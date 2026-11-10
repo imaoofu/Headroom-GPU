@@ -1,0 +1,134 @@
+{
+ "kind": "core",
+ "session_index": 4,
+ "complete": true,
+ "failure": null,
+ "windows_done": 144,
+ "background": [
+  {
+   "mono": 498.3173916,
+   "inventory_ok": true,
+   "forbidden": [],
+   "pollers": [],
+   "claude_visible_windows": 0,
+   "cpu_pct": 1.521034,
+   "process_count": 205,
+   "when": "before",
+   "row_visit": 0
+  },
+  {
+   "mono": 2040.9948122,
+   "inventory_ok": true,
+   "forbidden": [],
+   "pollers": [],
+   "claude_visible_windows": 0,
+   "cpu_pct": 3.130781,
+   "process_count": 195,
+   "when": "after",
+   "row_visit": 0
+  },
+  {
+   "mono": 2042.4896927,
+   "inventory_ok": true,
+   "forbidden": [],
+   "pollers": [],
+   "claude_visible_windows": 0,
+   "cpu_pct": 6.792068,
+   "process_count": 195,
+   "when": "before",
+   "row_visit": 1
+  },
+  {
+   "mono": 3585.203421,
+   "inventory_ok": true,
+   "forbidden": [],
+   "pollers": [],
+   "claude_visible_windows": 0,
+   "cpu_pct": 2.006432,
+   "process_count": 194,
+   "when": "after",
+   "row_visit": 1
+  },
+  {
+   "mono": 3586.5849492,
+   "inventory_ok": true,
+   "forbidden": [],
+   "pollers": [],
+   "claude_visible_windows": 0,
+   "cpu_pct": 0.79253,
+   "process_count": 194,
+   "when": "before",
+   "row_visit": 2
+  },
+  {
+   "mono": 5129.4022418,
+   "inventory_ok": true,
+   "forbidden": [],
+   "pollers": [],
+   "claude_visible_windows": 0,
+   "cpu_pct": 2.061434,
+   "process_count": 189,
+   "when": "after",
+   "row_visit": 2
+  },
+  {
+   "mono": 5130.784133,
+   "inventory_ok": true,
+   "forbidden": [],
+   "pollers": [],
+   "claude_visible_windows": 0,
+   "cpu_pct": 1.821333,
+   "process_count": 189,
+   "when": "before",
+   "row_visit": 3
+  },
+  {
+   "mono": 6674.0537412,
+   "inventory_ok": true,
+   "forbidden": [],
+   "pollers": [],
+   "claude_visible_windows": 0,
+   "cpu_pct": 3.583418,
+   "process_count": 192,
+   "when": "after",
+   "row_visit": 3
+  }
+ ],
+ "preflight_problems": [],
+ "preflight": {
+  "gpu": {
+   "driver_version": "616.92",
+   "power.limit": "180.00",
+   "utilization.gpu": "5",
+   "utilization.encoder": "0",
+   "utilization.decoder": "0"
+  },
+  "background": {
+   "mono": 496.721274,
+   "inventory_ok": true,
+   "forbidden": [],
+   "pollers": [],
+   "claude_visible_windows": 0,
+   "cpu_pct": 2.643085,
+   "process_count": 205
+  },
+  "driver_events": {
+   "query_ok": true,
+   "count": 0
+  }
+ },
+ "reset_exit": 0,
+ "after_reset": {
+  "clocks.sm": "2310",
+  "clocks.mem": "14001",
+  "pstate": "P0",
+  "temperature.gpu": "48",
+  "mono": 6675.5542461
+ },
+ "watcher_cleanup": {
+  "exit_code": 0,
+  "reaped": true,
+  "errors": []
+ },
+ "exit_code": 0
+}

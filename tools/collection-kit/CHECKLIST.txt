@@ -1,0 +1,245 @@
+HEADROOM COLLECTION KIT - build-day checklist
+=============================================
+
+WHAT THIS DOES
+  Measures GPU performance and power at 13 locked core frequencies, twice (one
+  compute-heavy workload, one memory-heavy). About 15 minutes total.
+
+WHAT IT INSTALLS
+  Nothing. Python and PyTorch run out of this folder. Delete the folder when done
+  and the machine is exactly as it was.
+
+
+BEFORE YOU START
+----------------
+[ ] Machine is at STOCK. No overclock, no undervolt, no custom fan curve, no
+    Afterburner profile applied. If anything IS applied, this run is not a stock
+    baseline - the kit will ask you what is applied and you must answer honestly.
+    Nothing in the drivers reports this, so your answer is the only record of it.
+
+[ ] Windows is installed, NVIDIA drivers are installed.
+    Check: open Command Prompt, type   nvidia-smi
+    You should see a table with the GPU name. If "not recognized", install drivers first.
+
+[ ] *** TURN OFF NVIDIA INSTANT REPLAY. *** This is the single most important line
+    on this page and it is the one most likely to be skipped.
+
+    It is ON BY DEFAULT with the NVIDIA app. It has no window. It does not appear in
+    Task Manager's GPU column. It records the last few minutes of your screen at all
+    times, and it runs on the video encoder - a chip separate from the part being
+    measured - so the machine looks completely idle while it is running.
+
+      NVIDIA app  >  Settings                 >  Instant Replay  >  OFF
+      GeForce Experience  >  Share (Alt+Z)    >  Instant Replay  >  OFF
+
+    Measured on this project, on identical hardware settings: leaving it on cost 1.5%
+    of peak throughput, 4.2% across the middle of the frequency range, moved the
+    measured efficiency optimum a whole grid step, and made repeat runs of the same
+    sweep FIFTY TIMES less consistent. Data collected with it on cannot be compared
+    against data collected with it off.
+
+    Also turn off, if present: OBS replay buffer, Discord and Steam recording,
+    Xbox Game Bar background recording, AMD ReLive.
+
+    The kit now checks the video encoder directly and refuses to start if anything is
+    recording. If it refuses and you cannot find the cause, Instant Replay is the
+    answer nine times out of ten.
+
+    CHECK IT AGAIN FOR EVERY RUN, not once per machine. On 2026-08-23 it read 0%
+    before one run and a sustained 14% forty minutes later in the same session,
+    because somebody had switched it back on and it was not written down. That is
+    the normal way this goes wrong on a build day, with several people near one
+    machine. If you are doing a stock run and then an overclocked run, that is
+    TWO checks, not one.
+
+[ ] Nothing heavy is running. Close games, Discord, browsers playing video, any AI
+    or mining app. The kit refuses to start above 10% GPU usage and will tell you.
+    Note this check alone is NOT enough - see the Instant Replay item above, which
+    sits at 0% GPU usage while costing real throughput.
+
+[ ] Copy this whole folder to the machine's own drive first - for example
+    C:\headroom-kit. Running it straight off the USB works but is slower.
+    IMPORTANT: the folder path must have NO SPACES in it.
+
+
+RUNNING IT
+----------
+1. Double-click  RUN-ME.bat
+
+2. A blue/black window appears and asks for Administrator. Click YES.
+   (Needed to lock GPU clocks. Without it, nothing can be measured.)
+
+3. It checks the machine, then asks TWO questions.
+
+   First:   Machine label
+   Type the GPU model, no spaces. Examples:
+       rtx4070-super
+       rtx5070ti-build3
+
+   Second:  Applied settings
+   Type what is applied to the card RIGHT NOW. If nothing has been touched, type
+       stock
+   If anything is applied, describe it - core offset, memory offset, power limit,
+   V/F curve, vendor profile, fan curve. For example:
+       core +150 mem +800 pl 110% msi afterburner
+       vendor oc bios switch, untouched otherwise
+
+   It will not accept a blank answer, on purpose. Nothing can reconstruct this later
+   from the data, and a blank field is impossible to tell apart from "stock" when
+   someone reads the file back in six months. This project has already lost the
+   settings behind its own best result exactly this way.
+
+4. Wait. Two sweeps run, about 6-12 minutes each.
+
+   *** DO NOT CLICK INSIDE THE WINDOW ***
+   Clicking in a Windows console selects text and FREEZES the program. It looks
+   like a crash but it is just paused. This has happened before and corrupted a
+   run. If you do it by accident: press Esc, or right-click once, and it resumes.
+
+5. When it finishes it prints either
+       COLLECTION SUCCEEDED         <- good
+   or
+       COLLECTION INCOMPLETE        <- something went wrong, keep the folder anyway
+
+6. Copy the results folder off the machine (USB, cloud, email to yourself).
+   It is at:   results\<date>_<label>\
+   It is small - a few hundred KB.
+
+7. Delete the kit folder from the machine.
+
+
+RUNNING THE EXTENDED SUITE (not RUN-ME.bat)
+-------------------------------------------
+RUN-ME.bat passes no arguments, so it always collects the original two workloads,
+gemm and membw. The extended suite - the eleven workloads spanning arithmetic
+intensity - needs Collect.ps1 called directly with -Workloads and -Iterations.
+
+That means opening PowerShell yourself, and Windows will refuse to run the script
+until you say otherwise. THIS IS THE COMMAND:
+
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
+  -Scope Process   applies to THAT WINDOW ONLY and is gone when you close it.
+                   Nothing is written to the registry. The machine is untouched.
+  -Force           skips the yes/no confirmation prompt. Without it the command
+                   stops and waits for an answer, which hangs anything scripted.
+
+*** NEVER use -Scope LocalMachine or -Scope CurrentUser on a machine that is not
+yours. *** Those persist after the machine leaves you. It is somebody else's
+system security setting and it is not ours to change. The process scope does the
+same job for the length of one session.
+
+Then, in that same Administrator window:
+
+  1. Find the drive letter - it is not always F:
+
+        Get-Volume | Select-Object DriveLetter,FileSystemLabel,SizeRemaining
+
+  2. Calibrate on THIS card. Iteration counts do not transfer between cards, and
+     a suite workload refuses to start without one.
+
+        cd F:\headroom-kit
+        foreach ($w in @("bgemm32","bgemm64","bgemm128","bgemm256","bgemm1024",
+                         "copy","reduce","softmax","layernorm","conv","attention")) {
+          .\python\python.exe .\tools\frequency-sweep\gpu_workload.py --workload $w --calibrate
+        }
+
+     Write the numbers down. Each prints a "--iterations N" recommendation.
+
+  3. Collect. -Iterations is matched to -Workloads BY POSITION, and the script
+     refuses to start if the two lists are different lengths.
+
+        .\Collect.ps1 -Label "<card>-stock-suite" `
+                      -Workloads copy,bgemm128,bgemm1024,conv `
+                      -Iterations <N>,<N>,<N>,<N> `
+                      -AppliedSettings "stock"
+
+Everything else on this page still applies - Instant Replay, the console-click
+freeze, copying results off, deleting the folder.
+
+
+HOW TO TELL IT WORKED
+---------------------
+The kit checks itself and prints one line per sweep, like:
+
+  [ok] 20260820-...-gemm-stock_sweep.csv: 13 points, 13 with performance data, 11 locks held
+
+Good:    at least 10 points "with performance data" for each of the two sweeps.
+Bad:     "[BAD]" in red, or fewer than 10 points.
+
+"locks held" being less than 13 is NORMAL and fine - the card refuses some
+frequencies near the top. It is recorded and handled later.
+
+
+IF SOMETHING GOES WRONG
+-----------------------
+It refuses to start and says why. The message tells you what to fix. Common ones:
+
+  "Not running as Administrator"
+      You clicked No on the prompt, or launched Collect.ps1 directly.
+      Use RUN-ME.bat and click Yes.
+
+  "nvidia-smi not found"
+      NVIDIA drivers are not installed on this machine. Install them, reboot, retry.
+
+  "PyTorch loaded but reports no CUDA device"
+      The GPU is not being seen. Usually a driver problem. Reboot and retry.
+      If it persists, skip this machine - do not waste build time on it.
+
+  "GPU is already N% busy"
+      Something is using the GPU. Close it. Task Manager > Performance > GPU shows
+      what. Then retry.
+
+  "Something is recording or playing video on this GPU"
+      An always-on clipper is running. Task Manager will NOT show it, because video
+      encoding happens on a separate engine. In order of likelihood:
+        1. NVIDIA Instant Replay - NVIDIA app > Settings > Instant Replay > OFF
+        2. OBS replay buffer, Discord recording, Steam recording
+        3. Xbox Game Bar background recording - Settings > Gaming > Captures
+        4. A browser tab or media player with video open
+      Turn it off and retry. Do not work around this one - the run is not usable.
+
+  "running scripts is disabled on this system"
+      You launched Collect.ps1 directly without allowing scripts first. In that
+      same window run:
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+      Process scope only - never LocalMachine or CurrentUser on a machine that is
+      not yours. If it then says a file is "not digitally signed", the files
+      picked up a download mark on copy; clear it for the kit only:
+          Get-ChildItem -Path F:\headroom-kit -Recurse -Include *.ps1,*.bat | Unblock-File
+
+  "This kit is in a folder whose path contains a space"
+      Move the folder to C:\headroom-kit and retry.
+
+  Window seems frozen, no new output for minutes
+      You probably clicked in it. Press Esc or right-click once.
+
+  Anything else, or it crashes
+      Take a photo of the screen. Copy the results folder anyway. Move on - do not
+      burn build time debugging. A missed machine costs less than a late delivery.
+
+
+DID IT LEAVE THE GPU LOCKED?
+----------------------------
+No - the kit resets clocks automatically, even if it crashes, and clock locks do
+not survive a reboot in any case. To confirm by hand:
+
+    nvidia-smi -q -d CLOCK
+
+If you are worried, just reboot. That always clears it.
+
+
+WRITE THIS DOWN FOR EACH MACHINE
+--------------------------------
+The kit records the GPU, driver, VBIOS, CPU, RAM and OS automatically. It CANNOT
+know these, so note them yourself in the results folder (a text file or a photo):
+
+  [ ] Case and cooler (airflow changes thermals, thermals change everything)
+  [ ] Ambient room temperature, roughly
+  [ ] Anything unusual - riser cable, vertical mount, small case, dusty
+  [ ] Whether this GPU is new or used
+
+  [ ] IF the customer wants it overclocked: run this kit FIRST at stock, then
+      apply the OC, then run it AGAIN with a label ending -oc.
+      Two runs on one machine is worth far more than one run on two machines,
+      because it is the same silicon under both conditions.

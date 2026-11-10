@@ -1,0 +1,410 @@
+{
+  "device": "NVIDIA GeForce RTX 5060 Ti",
+  "total_elements_m": 163840,
+  "rounds": 3,
+  "verdicts": [
+    "NOT launch-bound - throughput is flat across kernel size",
+    "graph replay changes nothing - the launch path is not the limiter even at the smallest kernel"
+  ],
+  "results": [
+    {
+      "elements_m": 16,
+      "graph": false,
+      "launches": 10240,
+      "seconds": 4.9415,
+      "ms_per_kernel": 0.4826,
+      "gb_per_s": 417.2,
+      "cpu_submit_seconds": 4.4514,
+      "cpu_submit_fraction": 0.9008,
+      "start_unix": 1787024969.8160481,
+      "end_unix": 1787024974.7574112,
+      "round": 0,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2989.8,
+        "clock_min_mhz": 2985.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 88.8,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 32,
+      "graph": false,
+      "launches": 5120,
+      "seconds": 4.9499,
+      "ms_per_kernel": 0.9668,
+      "gb_per_s": 416.49,
+      "cpu_submit_seconds": 3.9626,
+      "cpu_submit_fraction": 0.8005,
+      "start_unix": 1787024974.7703884,
+      "end_unix": 1787024979.7202003,
+      "round": 0,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 90.0,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 128,
+      "graph": false,
+      "launches": 1280,
+      "seconds": 4.9534,
+      "ms_per_kernel": 3.8698,
+      "gb_per_s": 416.2,
+      "cpu_submit_seconds": 1.0079,
+      "cpu_submit_fraction": 0.2035,
+      "start_unix": 1787024979.7674606,
+      "end_unix": 1787024984.7206752,
+      "round": 0,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 90.2,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 256,
+      "graph": false,
+      "launches": 640,
+      "seconds": 4.9626,
+      "ms_per_kernel": 7.7541,
+      "gb_per_s": 415.42,
+      "cpu_submit_seconds": 0.0037,
+      "cpu_submit_fraction": 0.0007,
+      "start_unix": 1787024984.815534,
+      "end_unix": 1787024989.7785466,
+      "round": 0,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 90.2,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 512,
+      "graph": false,
+      "launches": 320,
+      "seconds": 4.9636,
+      "ms_per_kernel": 15.5113,
+      "gb_per_s": 415.34,
+      "cpu_submit_seconds": 0.0017,
+      "cpu_submit_fraction": 0.0003,
+      "start_unix": 1787024989.9713628,
+      "end_unix": 1787024994.9343667,
+      "round": 0,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 90.1,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 512,
+      "graph": false,
+      "launches": 320,
+      "seconds": 4.9639,
+      "ms_per_kernel": 15.5122,
+      "gb_per_s": 415.32,
+      "cpu_submit_seconds": 0.0017,
+      "cpu_submit_fraction": 0.0003,
+      "start_unix": 1787024995.136697,
+      "end_unix": 1787025000.100753,
+      "round": 1,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 90.1,
+        "util_avg_pct": 97.1
+      }
+    },
+    {
+      "elements_m": 256,
+      "graph": false,
+      "launches": 640,
+      "seconds": 4.9648,
+      "ms_per_kernel": 7.7575,
+      "gb_per_s": 415.24,
+      "cpu_submit_seconds": 0.004,
+      "cpu_submit_fraction": 0.0008,
+      "start_unix": 1787025000.211772,
+      "end_unix": 1787025005.1758847,
+      "round": 1,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 91.9,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 128,
+      "graph": false,
+      "launches": 1280,
+      "seconds": 4.9432,
+      "ms_per_kernel": 3.8619,
+      "gb_per_s": 417.05,
+      "cpu_submit_seconds": 1.0095,
+      "cpu_submit_fraction": 0.2042,
+      "start_unix": 1787025005.2317517,
+      "end_unix": 1787025010.1748314,
+      "round": 1,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.2,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 32,
+      "graph": false,
+      "launches": 5120,
+      "seconds": 4.9439,
+      "ms_per_kernel": 0.9656,
+      "gb_per_s": 417.0,
+      "cpu_submit_seconds": 3.9608,
+      "cpu_submit_fraction": 0.8011,
+      "start_unix": 1787025010.1918314,
+      "end_unix": 1787025015.1361625,
+      "round": 1,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.6,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 16,
+      "graph": false,
+      "launches": 10240,
+      "seconds": 4.9324,
+      "ms_per_kernel": 0.4817,
+      "gb_per_s": 417.97,
+      "cpu_submit_seconds": 4.4518,
+      "cpu_submit_fraction": 0.9026,
+      "start_unix": 1787025015.1431627,
+      "end_unix": 1787025020.0753639,
+      "round": 1,
+      "telemetry": {
+        "samples": 46,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.6,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 16,
+      "graph": false,
+      "launches": 10240,
+      "seconds": 4.9371,
+      "ms_per_kernel": 0.4821,
+      "gb_per_s": 417.57,
+      "cpu_submit_seconds": 4.4463,
+      "cpu_submit_fraction": 0.9006,
+      "start_unix": 1787025020.0823765,
+      "end_unix": 1787025025.0201852,
+      "round": 2,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.7,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 32,
+      "graph": false,
+      "launches": 5120,
+      "seconds": 4.9465,
+      "ms_per_kernel": 0.9661,
+      "gb_per_s": 416.77,
+      "cpu_submit_seconds": 3.9756,
+      "cpu_submit_fraction": 0.8037,
+      "start_unix": 1787025025.0316944,
+      "end_unix": 1787025029.9787185,
+      "round": 2,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.8,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 128,
+      "graph": false,
+      "launches": 1280,
+      "seconds": 4.9437,
+      "ms_per_kernel": 3.8623,
+      "gb_per_s": 417.01,
+      "cpu_submit_seconds": 1.0139,
+      "cpu_submit_fraction": 0.2051,
+      "start_unix": 1787025030.0252428,
+      "end_unix": 1787025034.9689217,
+      "round": 2,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.3,
+        "util_avg_pct": 98.7
+      }
+    },
+    {
+      "elements_m": 256,
+      "graph": false,
+      "launches": 640,
+      "seconds": 4.9563,
+      "ms_per_kernel": 7.7442,
+      "gb_per_s": 415.95,
+      "cpu_submit_seconds": 0.0035,
+      "cpu_submit_fraction": 0.0007,
+      "start_unix": 1787025035.0653126,
+      "end_unix": 1787025040.0215468,
+      "round": 2,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.0,
+        "util_avg_pct": 98.2
+      }
+    },
+    {
+      "elements_m": 512,
+      "graph": false,
+      "launches": 320,
+      "seconds": 4.9616,
+      "ms_per_kernel": 15.5049,
+      "gb_per_s": 415.51,
+      "cpu_submit_seconds": 0.0016,
+      "cpu_submit_fraction": 0.0003,
+      "start_unix": 1787025040.2128603,
+      "end_unix": 1787025045.1750064,
+      "round": 2,
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 91.5,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 16,
+      "graph": false,
+      "launches": 10240,
+      "seconds": 4.9362,
+      "ms_per_kernel": 0.4821,
+      "gb_per_s": 417.64,
+      "cpu_submit_seconds": 4.4542,
+      "cpu_submit_fraction": 0.9023,
+      "start_unix": 1787025045.201671,
+      "end_unix": 1787025050.1371763,
+      "round": "graph-test",
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2991.2,
+        "clock_min_mhz": 2985.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.4,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 16,
+      "graph": true,
+      "launches": 10240,
+      "seconds": 4.9435,
+      "ms_per_kernel": 0.4828,
+      "gb_per_s": 417.03,
+      "cpu_submit_seconds": 0.0027,
+      "cpu_submit_fraction": 0.0005,
+      "start_unix": 1787025050.1500754,
+      "end_unix": 1787025055.0938902,
+      "round": "graph-test",
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2991.2,
+        "clock_min_mhz": 2985.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.3,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 256,
+      "graph": false,
+      "launches": 640,
+      "seconds": 4.9535,
+      "ms_per_kernel": 7.7398,
+      "gb_per_s": 416.19,
+      "cpu_submit_seconds": 0.0036,
+      "cpu_submit_fraction": 0.0007,
+      "start_unix": 1787025055.1869693,
+      "end_unix": 1787025060.1403348,
+      "round": "graph-test",
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.3,
+        "util_avg_pct": 99.0
+      }
+    },
+    {
+      "elements_m": 256,
+      "graph": true,
+      "launches": 640,
+      "seconds": 4.9595,
+      "ms_per_kernel": 7.7492,
+      "gb_per_s": 415.69,
+      "cpu_submit_seconds": 0.0002,
+      "cpu_submit_fraction": 0.0,
+      "start_unix": 1787025060.266034,
+      "end_unix": 1787025065.225332,
+      "round": "graph-test",
+      "telemetry": {
+        "samples": 45,
+        "clock_avg_mhz": 2992.0,
+        "clock_min_mhz": 2992.0,
+        "clock_max_mhz": 2992.0,
+        "power_avg_w": 92.2,
+        "util_avg_pct": 99.0
+      }
+    }
+  ]
+}

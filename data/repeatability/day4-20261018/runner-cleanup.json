@@ -1,0 +1,10 @@
+{
+    "ok":  true,
+    "reset_exit":  0,
+    "store_restored":  true,
+    "memory_loaded_mhz":  13801,
+    "power_limit_w":  180,
+    "errors":  [
+
+               ]
+}

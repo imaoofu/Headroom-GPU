@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use these measurements, please cite this dataset."
+title: "Headroom: consumer GPU frequency-efficiency sweeps with voltage telemetry"
+type: dataset
+version: 1.2.0
+doi: 10.5281/zenodo.23547564
+date-released: 2026-10-21
+authors:
+  - family-names: "Chuang"
+    given-names: "Zi Chen Raymond"
+license: CC-BY-4.0
+keywords:
+  - GPU
+  - DVFS
+  - energy efficiency
+  - frequency scaling
+  - voltage-frequency curve
+  - NVIDIA GeForce
+  - measurement dataset
+abstract: >-
+  1088 locked-clock frequency sweeps on four consumer NVIDIA GPUs (RTX 5060 Ti, RTX 3070 Ti,
+  RTX 2060 Super, RTX 3060) across three architectures, with throughput, board power and clocks
+  per target frequency, and HWiNFO core-voltage and crossbar-clock extracts for 729 sweeps.
+  Version 1.2.0 adds, counted separately, a registered five-day repeatability study (40 sweeps) and
+  four pilot sessions of a registered energy-counter polling study (sizing data, no verdict), both on
+  the RTX 5060 Ti. One physical card per model.

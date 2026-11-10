@@ -1,0 +1,50 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Zi Chen Raymond Chuang (github.com/imaoofu)
+
+The measurement data produced by this project is licensed under the Creative
+Commons Attribution 4.0 International License.
+
+  Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+  Full legal code:        https://creativecommons.org/licenses/by/4.0/legalcode
+
+You are free to share and adapt this data for any purpose, including
+commercially, provided you give appropriate credit, link to the license, and
+indicate if changes were made.
+
+
+WHAT THIS COVERS
+
+Original measurements collected by this project:
+
+  data/frequency-sweeps/    frequency sweep CSVs and session JSON
+  data/stability-runs/      stability logger CSVs and session JSON
+  data/probes/              diagnostic probe results
+
+Together with the accompanying README.md files in those directories, which
+record the provenance and known caveats of each run and are part of the data
+rather than commentary on it.
+
+
+WHAT THIS DOES NOT COVER
+
+  data/raw/        third-party (GPU-DVFS-Dataset). Not redistributed - gitignored.
+  data/external/   third-party (four sources). Not redistributed - gitignored.
+
+Those directories are populated locally by `scripts/Get-Dataset.ps1`, which
+downloads from each upstream project. Their contents belong to their respective
+authors under their own terms. See the "Third-party data" section of README.md.
+
+Software in this repository is licensed separately under the MIT License.
+See LICENSE.
+
+
+HOW TO CITE
+
+  Raymond. Headroom: measured GPU frequency-efficiency data on consumer
+  hardware. 2026. https://github.com/imaoofu/Headroom
+
+Please read the README.md in each data directory before using a run. Several
+are explicitly marked not dataset-grade, and at least one carries a verdict
+that was later shown to be wrong. Those notes exist so the data is not used
+for more than it can support.

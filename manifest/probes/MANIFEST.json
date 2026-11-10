@@ -1,0 +1,18 @@
+[
+  {
+    "manifest": "manifest/probes/diagnostic-probes/MANIFEST.json",
+    "directory": "data/probes",
+    "kind": "diagnostic-probes",
+    "label": "Diagnostic probes on N=1 chip, not sweep rows. Read the filed limitations, including the unusable 2800 MHz memory-clock/peak figures.",
+    "counts": {
+      "files": 6,
+      "sweeps": 0,
+      "target_rows": 0,
+      "voltage_extracts": 0,
+      "windows": 0,
+      "reader_csvs": 0,
+      "probe_jsons": 4
+    },
+    "readme_excerpt": "One-off diagnostic experiments that answer a specific question about whether a *measurement* is\nsound, rather than collecting dataset rows. Kept because a threat to validity that was checked and\ndismissed is worth as much as one that was found \u2014 and because a reader has no way to tell the two\napart unless the check is on record.\n\n## Runs"
+  }
+]

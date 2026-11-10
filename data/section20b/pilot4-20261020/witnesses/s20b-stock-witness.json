@@ -1,0 +1,21 @@
+﻿{
+    "profile_store":  "C:\\headroom-bench\\rerun15\\20261020-083446-s20b\\witnesses\\s20b-stock-store.cfg",
+    "snapshot":  "curve3",
+    "profile_slot":  3,
+    "witnessed_at_unix":  1792510760.219,
+    "driver":  "616.92",
+    "power_limit_w":  180,
+    "memory_loaded_mhz":  13801,
+    "offsets_mhz":  {
+                        "xbar_offset_mhz":  0,
+                        "sys_offset_mhz":  0,
+                        "video_offset_mhz":  0,
+                        "demand_core_mv":  0,
+                        "demand_xbar_mv":  0,
+                        "demand_sys_mv":  0,
+                        "demand_video_mv":  0
+                    },
+    "restored_byte_for_byte":  true,
+    "afterburner_closed":  true,
+    "gemm_2475_power_w":  170.91
+}

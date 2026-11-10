@@ -1,0 +1,16 @@
+{
+    "section":  "REGISTERED-PREDICTIONS section 20b",
+    "dryRun":  false,
+    "sweeps":  {
+
+               },
+    "references":  {
+
+                   },
+    "notScoreable":  [
+
+                     ],
+    "core":  "C:\\headroom-bench\\rerun15\\20261013-084104-s20b\\core",
+    "controllerExit":  0,
+    "exitCode":  0
+}

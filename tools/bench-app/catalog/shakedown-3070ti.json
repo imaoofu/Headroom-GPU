@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 1,
+  "title": "RTX 3070 Ti: tonight's shakedown, plus C8 (run this BEFORE the overnight Session D)",
+  "retired": true,
+  "volumeLabel": "ESD-USB",
+  "card": {
+    "name": "NVIDIA GeForce RTX 3070 Ti",
+    "minClockMhz": 405,
+    "maxClockMhz": 2115,
+    "legacyDerivedGrids": "The 3070 Ti shakedown and C8, collected 2026-09-23, before the explicit-target rule of 2026-09-30. Kept as the record of what ran; never run again."
+  },
+  "revert": {
+    "slot": 1,
+    "witness": {
+      "workload": "gemm",
+      "iterations": 400,
+      "coreMin": 1700,
+      "coreMax": 2115,
+      "memoryMin": 9200,
+      "memoryMax": 9550
+    }
+  },
+  "runs": [
+    {
+      "id": "preflight",
+      "name": "Preflight: SILENT BIOS, quiet GPU, profile store, HWiNFO",
+      "why": "The same gates tomorrow's unattended session depends on, checked with Raymond present.",
+      "minutes": 4,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [],
+      "group": null,
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "profile-hash",
+          "type": "gate-hash",
+          "name": "Verify decoded Afterburner profile store",
+          "estimatedMinutes": 0.1,
+          "path": "C:/Program Files (x86)/MSI Afterburner/Profiles/VEN_10DE*.cfg",
+          "prefix": "1B08C2D0854460FF"
+        },
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P1 (stock)",
+          "estimatedMinutes": 0.2,
+          "slot": 1
+        },
+        {
+          "id": "power",
+          "type": "gate-power",
+          "name": "SILENT BIOS: 290 / 290 / 320 W",
+          "estimatedMinutes": 0.1,
+          "limit": 290,
+          "default": 290,
+          "max": 320
+        },
+        {
+          "id": "quiet",
+          "type": "gate-quiet",
+          "name": "Quiet pmon baseline and video engines",
+          "estimatedMinutes": 0.3,
+          "maxUtil": 5
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Stock under load",
+          "estimatedMinutes": 0.7,
+          "workload": "gemm",
+          "iterations": 400,
+          "coreMin": 1700,
+          "coreMax": 2115,
+          "memoryMin": 9200,
+          "memoryMax": 9550
+        },
+        {
+          "id": "sensors",
+          "type": "human",
+          "name": "Confirm HWiNFO Sensors window",
+          "estimatedMinutes": 0.5,
+          "instruction": "HWiNFO has launched from the kit (if it was not already running). Open Sensors only and close any update popup. The run continues by itself once the Sensors window is detected; Continue also works.",
+          "launchHwinfo": true
+        }
+      ]
+    },
+    {
+      "id": "edit1-check",
+      "name": "Edit 1 (P2) takes: locked 1395 MHz reads ~0.850 V",
+      "why": "Proves the manipulation applies on this machine and that HWiNFO is read correctly here.",
+      "minutes": 2,
+      "priority": 1,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "preflight"
+      ],
+      "group": "shakedown",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P2",
+          "estimatedMinutes": 0.2,
+          "slot": 2
+        },
+        {
+          "id": "witness-log-start",
+          "type": "hwinfo-start",
+          "name": "Start short witness voltage log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx3070ti-shakedown-20260923-edit1.csv"
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Locked 1395 MHz on Edit 1",
+          "estimatedMinutes": 0.7,
+          "workload": "gemm",
+          "iterations": 400,
+          "coreMin": 1370,
+          "coreMax": 1420,
+          "memoryMin": 9200,
+          "memoryMax": 9550,
+          "lockMhz": 1395,
+          "voltageMin": 0.835,
+          "voltageMax": 0.87
+        },
+        {
+          "id": "witness-log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop witness voltage log",
+          "estimatedMinutes": 0.2
+        }
+      ]
+    },
+    {
+      "id": "edit2-check",
+      "name": "Edit 2 (P3) takes: peak ~1500 MHz",
+      "why": "Proves the negative control applies on this machine.",
+      "minutes": 1,
+      "priority": 2,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "edit1-check"
+      ],
+      "group": "shakedown",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P3",
+          "estimatedMinutes": 0.2,
+          "slot": 3
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Edit 2 under load",
+          "estimatedMinutes": 0.7,
+          "workload": "gemm",
+          "iterations": 400,
+          "coreMin": 1450,
+          "coreMax": 1550,
+          "memoryMin": 9200,
+          "memoryMax": 9550
+        }
+      ]
+    },
+    {
+      "id": "mini-suite",
+      "name": "One-workload stock suite through Collect.ps1",
+      "why": "Exercises the suite path on this machine before six unattended hours depend on it. Not Session D data.",
+      "minutes": 9,
+      "priority": 3,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "edit2-check"
+      ],
+      "group": "shakedown",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P1 (stock)",
+          "estimatedMinutes": 0.2,
+          "slot": 1
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Stock under load",
+          "estimatedMinutes": 0.7,
+          "workload": "gemm",
+          "iterations": 400,
+          "coreMin": 1700,
+          "coreMax": 2115,
+          "memoryMin": 9200,
+          "memoryMax": 9550
+        },
+        {
+          "id": "log-start",
+          "type": "hwinfo-start",
+          "name": "Start HWiNFO log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx3070ti-shakedown-20260923-suite.csv"
+        },
+        {
+          "id": "collect",
+          "type": "suite",
+          "name": "Collect gemm, 13 points",
+          "estimatedMinutes": 9,
+          "label": "rtx3070ti-shakedown-20260923-suite",
+          "settings": "SHAKEDOWN of the bench app before the overnight Session D, not Session D data. STOCK P1, store 1b08c2d0854460ff, SILENT BIOS, PL default, memory +0",
+          "workloads": [
+            "gemm"
+          ],
+          "iterations": [
+            120
+          ],
+          "expectedMemoryClockMhz": 9501
+        },
+        {
+          "id": "log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop HWiNFO log",
+          "estimatedMinutes": 0.2
+        }
+      ]
+    },
+    {
+      "id": "finefloor-desc",
+      "name": "C8: descending stock fine sweep (real Session D data)",
+      "why": "Thermal-order control on the stock floor. Independent of the suites' bracket, so it can run tonight and come off tomorrow's list.",
+      "minutes": 13,
+      "priority": 4,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "mini-suite"
+      ],
+      "group": "shakedown",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "log-start",
+          "type": "hwinfo-start",
+          "name": "Start HWiNFO log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx3070ti-sessiond-finefloor-desc.csv"
+        },
+        {
+          "id": "fine-sweep",
+          "type": "sweep",
+          "name": "Descending 1200-1590 MHz gemm sweep",
+          "estimatedMinutes": 12,
+          "label": "rtx3070ti-sessiond-finefloor-desc",
+          "workload": "gemm",
+          "iterations": 120,
+          "minMhz": 1200,
+          "maxMhz": 1590,
+          "points": 10,
+          "direction": "descending",
+          "output": "kit:/results/finefloor-desc",
+          "settings": "STOCK P1, SILENT BIOS, PL default, memory +0 - fine floor 1200-1590 DESCENDING, same grid as rtx3070ti-silent-gemm-fine 2026-08-27, thermal control as in 4d. Run 2026-09-23, the evening before the Session D suites"
+        },
+        {
+          "id": "log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop HWiNFO log",
+          "estimatedMinutes": 0.2
+        }
+      ]
+    },
+    {
+      "id": "cleanup",
+      "name": "Verify stock",
+      "why": "Leave the card verified on stock P1 overnight.",
+      "minutes": 1,
+      "priority": 5,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "preflight"
+      ],
+      "group": null,
+      "finalRun": true,
+      "steps": [
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P1",
+          "estimatedMinutes": 0.2,
+          "slot": 1
+        },
+        {
+          "id": "power",
+          "type": "gate-power",
+          "name": "Verify stock power limits",
+          "estimatedMinutes": 0.1,
+          "limit": 290,
+          "default": 290,
+          "max": 320
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Verify stock core and memory under load",
+          "estimatedMinutes": 0.7,
+          "workload": "gemm",
+          "iterations": 400,
+          "coreMin": 1700,
+          "coreMax": 2115,
+          "memoryMin": 9200,
+          "memoryMax": 9550
+        }
+      ]
+    }
+  ]
+}

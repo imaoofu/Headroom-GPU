@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "inventory_source_commit": "e6a822202f9817b3dcdd74da2f90207f5c81ee41",
+  "policy": "tools/release/v120-cohorts.json",
+  "cohorts": 10,
+  "pilot_sessions": 4,
+  "repeatability_days": 5,
+  "probe_folders": 1,
+  "cohort_counts": {
+    "files": 1986,
+    "probe_jsons": 4,
+    "reader_csvs": 576,
+    "sweeps": 40,
+    "target_rows": 800,
+    "voltage_extracts": 40,
+    "windows": 576
+  },
+  "shared_evidence_files": 6,
+  "shared_evidence": [
+    {
+      "path": "data/afterburner-profiles/5060ti-profiles-20260926-curve3/VEN_10DE&DEV_2D04&SUBSYS_177219DA&REV_A1&BUS_1&DEV_0&FN_0.cfg",
+      "reason": "Exact curve3 reference sections required by stock-witness validation; explicit device-named profile-store exception.",
+      "bytes": 32891,
+      "sha256": "8ec197f30e21d1169eb2c33d02a2eb0b1b4c5752efb7cb856e56dce0031d83b7"
+    },
+    {
+      "path": "data/repeatability/README.md",
+      "reason": "Family provenance and final five-day COMPLETE status.",
+      "bytes": 1746,
+      "sha256": "7834d95e7a2429338d4ddd61a61e9f52bbc48b6e52afbe7b93eb2588d2a7e8b1"
+    },
+    {
+      "path": "docs/REGISTERED-PREDICTIONS.md",
+      "reason": "Registered rules, including hardened notes; read in context with outcomes.",
+      "bytes": 242661,
+      "sha256": "7c0fc3785621ada447c9ec3cc46e5bbc89d1b6fa444b47ae5c0989f806b3e984"
+    },
+    {
+      "path": "docs/desktop-load-census-20261003.csv",
+      "reason": "Complete source desktop-load census cited by the submission; the filtered release census is also generated and verified.",
+      "bytes": 190312,
+      "sha256": "a41b51cbc1495997cc953b0e1fe32016045c583d001a2309cd492b0553587000"
+    },
+    {
+      "path": "docs/repeatability/ATTEMPTS.md",
+      "reason": "First-attempt eligibility, index order and dates.",
+      "bytes": 2278,
+      "sha256": "b657ad668a5e9d389d6da3c9076485cd73802720bc6722db6725321069229edd"
+    },
+    {
+      "path": "docs/section20b/ATTEMPTS.md",
+      "reason": "All occupied section 20b attempt dates, including failed attempts and qualifications.",
+      "bytes": 2739,
+      "sha256": "ec324da11434249783c775a2785f25e1f29de984dd2ca2b415de5f42ef4ce95b"
+    }
+  ],
+  "interpretation": "Pilots are sizing data, never results. Section 20b stopped at insufficient precision with no verdict. Section 22 is COMPLETE on five days; gemm and resnet50 WITHIN 3%, copy and reduce INCONCLUSIVE. N=1 chip. No raw HWiNFO logs; voltage joins cannot be independently rebuilt."
+}

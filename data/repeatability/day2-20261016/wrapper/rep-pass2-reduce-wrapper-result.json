@@ -1,0 +1,15 @@
+﻿{
+    "desktopLoad":  "quiet",
+    "desktopLoadSummary":  "0 of 20 windows flagged (above 30 fps; 10% bus load only where no framerate is logged). A screen from one day\u0027s evidence, not a validated gate; a quiet result does not prove a clean run.",
+    "label":  "rep-pass2-reduce",
+    "startedAt":  "2026-10-16T09:19:01.2635319-07:00",
+    "finishedAt":  "2026-10-16T09:25:55.5281974-07:00",
+    "elapsedMinutes":  6.9,
+    "sweepExitCode":  0,
+    "logStopExitCode":  0,
+    "outputDirectory":  "C:\\headroom-bench\\results\\20261016-091845_rep-pass2-reduce",
+    "hwinfoLog":  "C:\\headroom-bench\\results\\20261016-091845_rep-pass2-reduce\\rep-pass2-reduce-hwinfo.csv",
+    "hwinfoLogBytes":  1688009,
+    "hwinfoLogRows":  826,
+    "appliedSettings":  "AFTERBURNER PROFILE 3 = STOCK (180 W, memory +0, curve offsets 0). Store restored byte for byte from snapshot curve3 with Afterburner closed, sections verified. Applied by MSIAfterburner.exe -profile3 -q, VERIFIED LIVE: memory under load 13801 MHz, power limit 180 W. REGISTERED-PREDICTIONS section 22 (day-to-day repeatability). HWiNFO 0.50 s, driver 616.92, operator absent, Claude minimized, ChatGPT/Codex/Opera/Discord/Obsidian closed. mVolt+ offsets and voltage demands read 0. Day 2 pass 2 ascending."
+}

@@ -1,0 +1,2 @@
+target,achieved,throughputGbs,powerW,memoryMhz,windowStart,windowEnd,voltage,crossbar,sampleCount,hwinfoUtcOffsetMinutes,crossbarMeasured
+1867,1860.0,12713.147023410638,102.25,13801.0,1790871715.292,1790871725.8078,0.795,1792.0,21,-420,1796.8

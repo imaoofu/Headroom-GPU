@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "directory": "data/probes",
+  "kind": "diagnostic-probes",
+  "label": "Diagnostic probes on N=1 chip, not sweep rows. Read the filed limitations, including the unusable 2800 MHz memory-clock/peak figures.",
+  "readme": "data/probes/README.md",
+  "readme_excerpt": "One-off diagnostic experiments that answer a specific question about whether a *measurement* is\nsound, rather than collecting dataset rows. Kept because a threat to validity that was checked and\ndismissed is worth as much as one that was found \u2014 and because a reader has no way to tell the two\napart unless the check is on record.\n\n## Runs",
+  "counts": {
+    "files": 6,
+    "sweeps": 0,
+    "target_rows": 0,
+    "voltage_extracts": 0,
+    "windows": 0,
+    "reader_csvs": 0,
+    "probe_jsons": 4
+  },
+  "files": [
+    {
+      "path": "data/probes/20260817-204900_5060ti-launch-bound.json",
+      "bytes": 11058,
+      "sha256": "0454b1d7071fb6423d8871c3a41bcf3d129d2b1cb361f9e4040289460a91e1ce"
+    },
+    {
+      "path": "data/probes/README-saturation.md",
+      "bytes": 11175,
+      "sha256": "f0e778adc610336427daae6a9cf0ab6da44852711581b0466b0ff4b6aedeca5f"
+    },
+    {
+      "path": "data/probes/README.md",
+      "bytes": 3531,
+      "sha256": "cd624b778f087e775a7091997ceef5cd66fc0a08d43a27a2890e81230c13834c"
+    },
+    {
+      "path": "data/probes/probe_issue_ceiling_result.json",
+      "bytes": 241,
+      "sha256": "9faf505cad4d4a6c393c499d12a8a6a507a3affeb28b3b8f38dcd822606741c7"
+    },
+    {
+      "path": "data/probes/probe_saturating_kernel_result.json",
+      "bytes": 1409,
+      "sha256": "e8a752606c2f42a16e0e5b746cf47b1bdf37f59df14f1baed28232c73c27747c"
+    },
+    {
+      "path": "data/probes/probe_unrolled_kernel_result.json",
+      "bytes": 837,
+      "sha256": "6c9256c9df24eef7fa83cae1d140281b8e5fca946f320a0681a4656aeccf21fc"
+    }
+  ]
+}

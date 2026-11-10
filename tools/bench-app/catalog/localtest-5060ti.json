@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "title": "RTX 5060 Ti: first live test of Headroom Bench (local, not measurement-grade)",
+  "volumeLabel": "ESD-USB",
+  "minimizeKnownRenderers": ["claude"],
+  "card": {
+    "name": "NVIDIA GeForce RTX 5060 Ti",
+    "minClockMhz": 180,
+    "maxClockMhz": 3090,
+    "legacyDerivedGrids": "An engine smoke test on this machine, written before the explicit-target rule of 2026-09-30. Not measurement-grade; its suite is never scored."
+  },
+  "revert": {
+    "slot": 3,
+    "witness": {
+      "workload": "gemm",
+      "iterations": 400,
+      "coreMin": 2300,
+      "coreMax": 2750,
+      "memoryMin": 13700,
+      "memoryMax": 14101
+    }
+  },
+  "runs": [
+    {
+      "id": "preflight",
+      "name": "Preflight: power, quiet GPU, profile store, HWiNFO",
+      "why": "Exercise every gate on a card whose values are known.",
+      "minutes": 3,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [],
+      "group": null,
+      "finalRun": false,
+      "steps": [
+        { "id": "profile-hash", "type": "gate-hash", "name": "Afterburner store slots are the curve3 snapshot restored 2026-10-11", "estimatedMinutes": 0.1, "path": "C:/Program Files (x86)/MSI Afterburner/Profiles/VEN_10DE*.cfg", "prefix": "34FFF5D87EFFBD62", "sections": ["Profile1", "Profile2", "Profile3"] },
+        { "id": "profile", "type": "apply-profile", "name": "Apply profile P3 (stock)", "estimatedMinutes": 0.2, "slot": 3 },
+        { "id": "power", "type": "gate-power", "name": "Stock power limits 180 / 180 / 200 W", "estimatedMinutes": 0.1, "limit": 180, "default": 180, "max": 200 },
+        { "id": "quiet", "type": "gate-quiet", "name": "Quiet GPU (10% for this test, not the 5% protocol)", "estimatedMinutes": 0.3, "maxUtil": 10 },
+        { "id": "witness", "type": "witness", "name": "Stock under load", "estimatedMinutes": 0.7, "workload": "gemm", "iterations": 400, "coreMin": 2300, "coreMax": 2750, "memoryMin": 13700, "memoryMax": 14101 },
+        { "id": "sensors", "type": "human", "name": "Confirm HWiNFO Sensors window", "estimatedMinutes": 0.5, "instruction": "HWiNFO has launched from the kit (if it was not already running). Open Sensors only and close any update popup. The run continues by itself once the Sensors window is detected; Continue also works.", "launchHwinfo": true }
+      ]
+    },
+    {
+      "id": "voltage-witness",
+      "name": "Stock P3 with a locked-clock voltage witness",
+      "why": "Test the HWiNFO log automation and the voltage read: stock holds 0.720 V at 1545 MHz.",
+      "minutes": 2,
+      "priority": 1,
+      "preselected": true,
+      "locked": true,
+      "requires": ["preflight"],
+      "group": "livetest",
+      "finalRun": false,
+      "steps": [
+        { "id": "profile", "type": "apply-profile", "name": "Apply profile P3 (stock)", "estimatedMinutes": 0.2, "slot": 3 },
+        { "id": "witness-log-start", "type": "hwinfo-start", "name": "Start short witness voltage log", "estimatedMinutes": 0.3, "path": "kit:/results/hwinfo-benchtest-5060ti-20261011-witness.csv" },
+        { "id": "witness", "type": "witness", "name": "Locked 1545 MHz reads the 0.720 V floor", "estimatedMinutes": 0.7, "workload": "gemm", "iterations": 400, "coreMin": 1520, "coreMax": 1560, "memoryMin": 13700, "memoryMax": 14101, "lockMhz": 1545, "voltageMin": 0.715, "voltageMax": 0.725 },
+        { "id": "witness-log-stop", "type": "hwinfo-stop", "name": "Stop witness voltage log", "estimatedMinutes": 0.2 }
+      ]
+    },
+    {
+      "id": "mini-suite",
+      "name": "One-workload suite through Collect.ps1",
+      "why": "Test the suite path the shop sessions depend on, in 7 minutes instead of 62.",
+      "minutes": 7,
+      "priority": 2,
+      "preselected": true,
+      "locked": true,
+      "requires": ["voltage-witness"],
+      "group": "livetest",
+      "finalRun": false,
+      "steps": [
+        { "id": "witness", "type": "witness", "name": "Stock under load, unlocked", "estimatedMinutes": 0.7, "workload": "gemm", "iterations": 400, "coreMin": 2300, "coreMax": 2750, "memoryMin": 13700, "memoryMax": 14101 },
+        { "id": "log-start", "type": "hwinfo-start", "name": "Start HWiNFO log", "estimatedMinutes": 0.3, "path": "kit:/results/hwinfo-benchtest-5060ti-20261011-suite.csv" },
+        { "id": "collect", "type": "suite", "name": "Collect gemm, 13 points", "estimatedMinutes": 7, "label": "benchtest-5060ti-20261011-suite", "settings": "HEADROOM BENCH LIVE TEST, not measurement-grade. Stock P3, PL 180 W, memory +0, driver 616.92.", "workloads": ["gemm"], "iterations": [120], "expectedMemoryClockMhz": 13801 },
+        { "id": "log-stop", "type": "hwinfo-stop", "name": "Stop HWiNFO log", "estimatedMinutes": 0.2 }
+      ]
+    },
+    {
+      "id": "mini-sweep",
+      "name": "Four-point sweep through Invoke-FrequencySweep",
+      "why": "Test the direct sweep path used by fine sweeps.",
+      "minutes": 3,
+      "priority": 3,
+      "preselected": true,
+      "locked": true,
+      "requires": ["mini-suite"],
+      "group": "livetest",
+      "finalRun": false,
+      "steps": [
+        { "id": "log-start", "type": "hwinfo-start", "name": "Start HWiNFO log", "estimatedMinutes": 0.3, "path": "kit:/results/hwinfo-benchtest-5060ti-20261011-sweep.csv" },
+        { "id": "sweep", "type": "sweep", "name": "gemm 1400-1700 MHz, 4 points, descending", "estimatedMinutes": 3, "label": "benchtest-5060ti-20261011-sweep", "workload": "gemm", "iterations": 120, "minMhz": 1400, "maxMhz": 1700, "points": 4, "direction": "descending", "output": "kit:/results/benchtest-5060ti-20261011-sweep", "settings": "HEADROOM BENCH LIVE TEST, not measurement-grade. Stock P3." },
+        { "id": "log-stop", "type": "hwinfo-stop", "name": "Stop HWiNFO log", "estimatedMinutes": 0.2 }
+      ]
+    },
+    {
+      "id": "cleanup",
+      "name": "Verify stock",
+      "why": "Leave the card verified on stock P3.",
+      "minutes": 1,
+      "priority": 4,
+      "preselected": true,
+      "locked": true,
+      "requires": ["preflight"],
+      "group": null,
+      "finalRun": true,
+      "steps": [
+        { "id": "profile", "type": "apply-profile", "name": "Apply profile P3 (stock)", "estimatedMinutes": 0.2, "slot": 3 },
+        { "id": "power", "type": "gate-power", "name": "Stock power limits", "estimatedMinutes": 0.1, "limit": 180, "default": 180, "max": 200 },
+        { "id": "witness", "type": "witness", "name": "Stock under load", "estimatedMinutes": 0.7, "workload": "gemm", "iterations": 400, "coreMin": 2300, "coreMax": 2750, "memoryMin": 13700, "memoryMax": 14101 }
+      ]
+    }
+  ]
+}

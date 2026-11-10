@@ -1,0 +1,82 @@
+[
+  {
+    "manifest": "manifest/repeatability/day1-20261015/MANIFEST.json",
+    "directory": "data/repeatability/day1-20261015",
+    "kind": "repeatability-day",
+    "label": "Repeated days on N=1 chip; five filed days COMPLETE. See scorer for workload outcomes.",
+    "counts": {
+      "files": 44,
+      "sweeps": 8,
+      "target_rows": 160,
+      "voltage_extracts": 8,
+      "windows": 0,
+      "reader_csvs": 0,
+      "probe_jsons": 0
+    },
+    "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a722, day index 1. Run by\n`tools/rerun15/Invoke-Rerun15Session.ps1 -Parts rep -Session 1 -ManageChatGpt` from `3d03761` (the\nattempt-line commit; the \u00a722 code is `c068dc2`'s, hardened after GPT Job 94), launched 08:38:56 local\n(UTC\u22127), minimized and unattended, exit 0 at 09:49:45. Attempt 2 in `docs/repeatability/ATTEMPTS.md`;\nthe dry-run qualification just before it (attempt 1, 08:23) is not data and is not filed. **N=1 chip.**\n\nPass 1 ran gemm, copy, reduce, resnet50 ascending (08:43\u201309:14); stock was re-witnessed; pass 2 ran\nresnet50, reduce, copy, gemm descending (09:18\u201309:49). Each sweep is 20 targets, 1237\u20131875 MHz at\n37.5 MHz plus 2010 and 2317. Counts gemm 120, copy 2660, reduce 2870, resnet50 424; gemm, copy and reduce\ndrew inputs with `--input-seed 20261013`, resnet50 seeds itself."
+  },
+  {
+    "manifest": "manifest/repeatability/day2-20261016/MANIFEST.json",
+    "directory": "data/repeatability/day2-20261016",
+    "kind": "repeatability-day",
+    "label": "Repeated days on N=1 chip; five filed days COMPLETE. See scorer for workload outcomes.",
+    "counts": {
+      "files": 44,
+      "sweeps": 8,
+      "target_rows": 160,
+      "voltage_extracts": 8,
+      "windows": 0,
+      "reader_csvs": 0,
+      "probe_jsons": 0
+    },
+    "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a722, day index 2. Run by\n`tools/rerun15/Invoke-Rerun15Session.ps1 -Parts rep -Session 2 -ManageChatGpt` from `510aa1c` (the\nattempt-line commit; the runner is byte-identical to day 1's, launch hash `A0753C59\u2026` both days), launched\n08:22:24 local (UTC\u22127), minimized and unattended, exit 0 at 09:33:26. Attempt 3 in\n`docs/repeatability/ATTEMPTS.md`. **N=1 chip.**\n\nPass 1 ran copy, reduce, resnet50, gemm **descending** (08:27\u201308:57); stock was re-witnessed; pass 2 ran\ngemm, resnet50, reduce, copy ascending (09:02\u201309:32). Same 20 targets, counts and input seed as day 1."
+  },
+  {
+    "manifest": "manifest/repeatability/day3-20261017/MANIFEST.json",
+    "directory": "data/repeatability/day3-20261017",
+    "kind": "repeatability-day",
+    "label": "Repeated days on N=1 chip; five filed days COMPLETE. See scorer for workload outcomes.",
+    "counts": {
+      "files": 44,
+      "sweeps": 8,
+      "target_rows": 160,
+      "voltage_extracts": 8,
+      "windows": 0,
+      "reader_csvs": 0,
+      "probe_jsons": 0
+    },
+    "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a722, day index 3. Run by\n`tools/rerun15/Invoke-Rerun15Session.ps1 -Parts rep -Session 3 -ManageChatGpt` from `1c1e388` (the\nattempt-line commit; runner byte-identical to days 1\u20132, launch hash `A0753C59\u2026`), launched 14:45:29 local\n(UTC\u22127), minimized and unattended, exit 0 at 15:56:16. Attempt 4 in `docs/repeatability/ATTEMPTS.md`.\n**N=1 chip.**\n\nLaunched the afternoon of the same date as the new-card practice run (12:25\u201314:00, a different protocol,\nnot data). Phone Link (PhoneExperienceHost, CrossDeviceService) was stopped just before launch as a\nprecaution: it is a candidate for waking the CPU's integrated GPU (practice attempt 1). Each pass still began\nwith its own 90 s idle and stock witness."
+  },
+  {
+    "manifest": "manifest/repeatability/day4-20261018/MANIFEST.json",
+    "directory": "data/repeatability/day4-20261018",
+    "kind": "repeatability-day",
+    "label": "Repeated days on N=1 chip; five filed days COMPLETE. See scorer for workload outcomes.",
+    "counts": {
+      "files": 44,
+      "sweeps": 8,
+      "target_rows": 160,
+      "voltage_extracts": 8,
+      "windows": 0,
+      "reader_csvs": 0,
+      "probe_jsons": 0
+    },
+    "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a722, day index 4. Run by\n`tools/rerun15/Invoke-Rerun15Session.ps1 -Parts rep -Session 4 -ManageChatGpt` from `39e72e3` (the\nattempt-line commit; runner byte-identical to days 1\u20133, launch hash `A0753C59\u2026`), launched 13:33:52 local\n(UTC\u22127), minimized and unattended, exit 0 at 14:44:44. Attempt 5 in `docs/repeatability/ATTEMPTS.md`.\n**N=1 chip.**\n\nBefore launch: no Claude desktop update had been installed since 2026-10-15 and none was pending (the\nAppXDeploymentServer log), and Phone Link (PhoneExperienceHost, CrossDeviceService, CrossDeviceResume) was\nstopped as on day 3. Each pass still began with its own 90 s idle and stock witness. This is the first day\nfiled after the 2026-10-18 desktop-screen hardening (\u00a722's dated note); the screen read every window."
+  },
+  {
+    "manifest": "manifest/repeatability/day5-20261019/MANIFEST.json",
+    "directory": "data/repeatability/day5-20261019",
+    "kind": "repeatability-day",
+    "label": "Repeated days on N=1 chip; five filed days COMPLETE. See scorer for workload outcomes.",
+    "counts": {
+      "files": 44,
+      "sweeps": 8,
+      "target_rows": 160,
+      "voltage_extracts": 8,
+      "windows": 0,
+      "reader_csvs": 0,
+      "probe_jsons": 0
+    },
+    "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a722, day index 5. Run by\n`tools/rerun15/Invoke-Rerun15Session.ps1 -Parts rep -Session 5 -ManageChatGpt` from `e903149` (the\nattempt-line commit; runner byte-identical to days 1\u20134, launch hash `A0753C59\u2026`), launched 08:23:30 local\n(UTC\u22127), minimized and unattended, exit 0 at 09:34:11. Attempt 6 in `docs/repeatability/ATTEMPTS.md`.\n**N=1 chip.**\n\nBefore launch: the Claude desktop app had last updated on the evening of 2026-10-18 (AppXDeploymentServer\nlog), had restarted at 08:22 this morning, and nothing newer had installed. Phone Link (PhoneExperienceHost,\nCrossDeviceService, CrossDeviceResume) was stopped as on days 3 and 4. Each pass still began with its own\n90 s idle and stock witness."
+  }
+]

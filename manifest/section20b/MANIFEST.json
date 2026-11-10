@@ -1,0 +1,66 @@
+[
+  {
+    "manifest": "manifest/section20b/pilot1-20261012/MANIFEST.json",
+    "directory": "data/section20b/pilot1-20261012",
+    "kind": "pilot-sizing",
+    "label": "Sizing data, never results; no confirmation verdict.",
+    "counts": {
+      "files": 439,
+      "sweeps": 0,
+      "target_rows": 0,
+      "voltage_extracts": 0,
+      "windows": 144,
+      "reader_csvs": 144,
+      "probe_jsons": 0
+    },
+    "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a720b, registered 2026-10-11 (`d8e6019`), pilot index 1, seed 71021.\nRun by `tools/rerun15/Invoke-Rerun15Session.ps1 -Parts s20b -Session 1 -ManageChatGpt` at 17:20\u201319:09\nlocal from `72fb0cf` (the \u00a720b code is identical to `025588e`, which the attempt log names; the commits\nbetween are website-only), launched minimized and unattended. Attempt 5 in\n`docs/section20b/ATTEMPTS.md`. `core/` is the controller's output as written (stop-signal files\nremoved); `session.log` and `rerun15-inputs.json` are the runner's. **N=1 chip.**\n\n**Pilot sessions size the confirmation stage; they give no verdict.** Nothing here may be cited as a\n\u00a720b result before confirmation, and these figures never enter confirmation intervals."
+  },
+  {
+    "manifest": "manifest/section20b/pilot2-20261013/MANIFEST.json",
+    "directory": "data/section20b/pilot2-20261013",
+    "kind": "pilot-sizing",
+    "label": "Sizing data, never results; no confirmation verdict.",
+    "counts": {
+      "files": 439,
+      "sweeps": 0,
+      "target_rows": 0,
+      "voltage_extracts": 0,
+      "windows": 144,
+      "reader_csvs": 144,
+      "probe_jsons": 0
+    },
+    "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a720b, registered 2026-10-11 (`d8e6019`), pilot index 2, seed 71022.\nRun by `tools/rerun15/Invoke-Rerun15Session.ps1 -Parts s20b -Session 2 -ManageChatGpt` at 08:41\u201310:29\nlocal from `c72630b` (the \u00a720b code is identical to `3bbdfca`, which the attempt log names; `c72630b`\nonly adds that log line), launched minimized and unattended. Attempt 6 in\n`docs/section20b/ATTEMPTS.md`. `core/` is the controller's output as written (the 144 per-window\nstop-signal files removed); `session.log` and `rerun15-inputs.json` are the runner's. **N=1 chip.**\n\n**Pilot sessions size the confirmation stage; they give no verdict.** Nothing here may be cited as a\n\u00a720b result before confirmation, and these figures never enter confirmation intervals."
+  },
+  {
+    "manifest": "manifest/section20b/pilot3-20261014/MANIFEST.json",
+    "directory": "data/section20b/pilot3-20261014",
+    "kind": "pilot-sizing",
+    "label": "Sizing data, never results; no confirmation verdict.",
+    "counts": {
+      "files": 439,
+      "sweeps": 0,
+      "target_rows": 0,
+      "voltage_extracts": 0,
+      "windows": 144,
+      "reader_csvs": 144,
+      "probe_jsons": 0
+    },
+    "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a720b, registered 2026-10-11 (`d8e6019`), pilot index 3, seed 71023.\nRun by `tools/rerun15/Invoke-Rerun15Session.ps1 -Parts s20b -Session 3 -ManageChatGpt` at 10:59\u201312:48\nlocal from `317b5ea`. The attempt log names `3d23a1b`; the \u00a720b code is identical, and the commits\nbetween only add that log line and a fix to the collection kit's memory witness, which \u00a720b does not\nuse. Launched minimized and unattended. Attempt 7 in `docs/section20b/ATTEMPTS.md`. `core/` is the\ncontroller's output as written (the 144 per-window stop-signal files removed); `session.log` and\n`rerun15-inputs.json` are the runner's. **N=1 chip.**\n\n**Pilot sessions size the confirmation stage; they give no verdict.** Nothing here may be cited as a\n\u00a720b result before confirmation, and these figures never enter confirmation intervals."
+  },
+  {
+    "manifest": "manifest/section20b/pilot4-20261020/MANIFEST.json",
+    "directory": "data/section20b/pilot4-20261020",
+    "kind": "pilot-sizing",
+    "label": "Sizing data, never results; no confirmation verdict.",
+    "counts": {
+      "files": 443,
+      "sweeps": 0,
+      "target_rows": 0,
+      "voltage_extracts": 0,
+      "windows": 144,
+      "reader_csvs": 144,
+      "probe_jsons": 0
+    },
+    "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a720b, registered 2026-10-11 (`d8e6019`), pilot index 4, seed 71024.\nRun by `tools/rerun15/Invoke-Rerun15Session.ps1 -Parts s20b -Session 4 -ManageChatGpt` at 08:34\u201310:23\nlocal, launched after the attempt-line commit `248d983` (logged as `0b8e8d4`, its parent; the runner is the\nsame in both). Since pilot 3 the runner has gained only \u00a722 additions (the `rep` part, a self-copy and\nsource hashes); the \u00a720b path is unchanged, and the \u00a720b scorer hardened after GPT Job 91 still scores\npilots 1\u20133 SCOREABLE. Launched minimized and unattended. Attempt 8 in `docs/section20b/ATTEMPTS.md`.\n`core/` is the controller's output as written (the 144 per-window stop-signal files removed);\n`session.log` and `rerun15-inputs.json` are the runner's. `witnesses/` is new relative to pilots 1\u20133: the\nhardened runner's stock witness, mVolt+ status and the profile store it restored. **N=1 chip.**\n\nBefore launch, a Claude desktop update (3.1623) that had downloaded and was waiting to install was applied\nfirst, so the app would not restart itself mid-session. Phone Link was stopped."
+  }
+]

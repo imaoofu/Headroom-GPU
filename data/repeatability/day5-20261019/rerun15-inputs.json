@@ -1,0 +1,331 @@
+{
+ "section": "REGISTERED-PREDICTIONS section 22 (day-to-day repeatability)",
+ "dryRun": false,
+ "sweeps": {
+  "pass1-gemm": {
+   "sweep": "20261019-082824_rep-pass1-gemm_sweep.csv",
+   "hwinfo": "../../HWiNFO-Data/day5-20261019/rep-pass1-gemm-hwinfo.csv",
+   "utc_offset_minutes": -420,
+   "wrapper": "wrapper/rep-pass1-gemm-wrapper-result.json",
+   "driver_events": {
+    "ids": [],
+    "ok": true,
+    "count": 0
+   },
+   "witness": {
+    "profile_store": "witnesses/rep-d5-pass1-store.cfg",
+    "snapshot": "curve3",
+    "profile_slot": 3,
+    "witnessed_at_unix": 1792423678.193,
+    "driver": "616.92",
+    "power_limit_w": 180,
+    "memory_loaded_mhz": 13801,
+    "offsets_mhz": {
+     "xbar_offset_mhz": 0,
+     "sys_offset_mhz": 0,
+     "video_offset_mhz": 0,
+     "demand_core_mv": 0,
+     "demand_xbar_mv": 0,
+     "demand_sys_mv": 0,
+     "demand_video_mv": 0
+    },
+    "restored_byte_for_byte": true,
+    "afterburner_closed": true,
+    "gemm_2475_power_w": 168.83
+   }
+  },
+  "pass1-copy": {
+   "sweep": "20261019-083639_rep-pass1-copy_sweep.csv",
+   "hwinfo": "../../HWiNFO-Data/day5-20261019/rep-pass1-copy-hwinfo.csv",
+   "utc_offset_minutes": -420,
+   "wrapper": "wrapper/rep-pass1-copy-wrapper-result.json",
+   "driver_events": {
+    "ids": [],
+    "ok": true,
+    "count": 0
+   },
+   "witness": {
+    "profile_store": "witnesses/rep-d5-pass1-store.cfg",
+    "snapshot": "curve3",
+    "profile_slot": 3,
+    "witnessed_at_unix": 1792423678.193,
+    "driver": "616.92",
+    "power_limit_w": 180,
+    "memory_loaded_mhz": 13801,
+    "offsets_mhz": {
+     "xbar_offset_mhz": 0,
+     "sys_offset_mhz": 0,
+     "video_offset_mhz": 0,
+     "demand_core_mv": 0,
+     "demand_xbar_mv": 0,
+     "demand_sys_mv": 0,
+     "demand_video_mv": 0
+    },
+    "restored_byte_for_byte": true,
+    "afterburner_closed": true,
+    "gemm_2475_power_w": 168.83
+   }
+  },
+  "pass1-reduce": {
+   "sweep": "20261019-084333_rep-pass1-reduce_sweep.csv",
+   "hwinfo": "../../HWiNFO-Data/day5-20261019/rep-pass1-reduce-hwinfo.csv",
+   "utc_offset_minutes": -420,
+   "wrapper": "wrapper/rep-pass1-reduce-wrapper-result.json",
+   "driver_events": {
+    "ids": [],
+    "ok": true,
+    "count": 0
+   },
+   "witness": {
+    "profile_store": "witnesses/rep-d5-pass1-store.cfg",
+    "snapshot": "curve3",
+    "profile_slot": 3,
+    "witnessed_at_unix": 1792423678.193,
+    "driver": "616.92",
+    "power_limit_w": 180,
+    "memory_loaded_mhz": 13801,
+    "offsets_mhz": {
+     "xbar_offset_mhz": 0,
+     "sys_offset_mhz": 0,
+     "video_offset_mhz": 0,
+     "demand_core_mv": 0,
+     "demand_xbar_mv": 0,
+     "demand_sys_mv": 0,
+     "demand_video_mv": 0
+    },
+    "restored_byte_for_byte": true,
+    "afterburner_closed": true,
+    "gemm_2475_power_w": 168.83
+   }
+  },
+  "pass1-resnet50": {
+   "sweep": "20261019-085042_rep-pass1-resnet50_sweep.csv",
+   "hwinfo": "../../HWiNFO-Data/day5-20261019/rep-pass1-resnet50-hwinfo.csv",
+   "utc_offset_minutes": -420,
+   "wrapper": "wrapper/rep-pass1-resnet50-wrapper-result.json",
+   "driver_events": {
+    "ids": [],
+    "ok": true,
+    "count": 0
+   },
+   "witness": {
+    "profile_store": "witnesses/rep-d5-pass1-store.cfg",
+    "snapshot": "curve3",
+    "profile_slot": 3,
+    "witnessed_at_unix": 1792423678.193,
+    "driver": "616.92",
+    "power_limit_w": 180,
+    "memory_loaded_mhz": 13801,
+    "offsets_mhz": {
+     "xbar_offset_mhz": 0,
+     "sys_offset_mhz": 0,
+     "video_offset_mhz": 0,
+     "demand_core_mv": 0,
+     "demand_xbar_mv": 0,
+     "demand_sys_mv": 0,
+     "demand_video_mv": 0
+    },
+    "restored_byte_for_byte": true,
+    "afterburner_closed": true,
+    "gemm_2475_power_w": 168.83
+   }
+  },
+  "pass2-resnet50": {
+   "sweep": "20261019-090311_rep-pass2-resnet50_sweep.csv",
+   "hwinfo": "../../HWiNFO-Data/day5-20261019/rep-pass2-resnet50-hwinfo.csv",
+   "utc_offset_minutes": -420,
+   "wrapper": "wrapper/rep-pass2-resnet50-wrapper-result.json",
+   "driver_events": {
+    "ids": [],
+    "ok": true,
+    "count": 0
+   },
+   "witness": {
+    "profile_store": "witnesses/rep-d5-pass2-store.cfg",
+    "snapshot": "curve3",
+    "profile_slot": 3,
+    "witnessed_at_unix": 1792425770.048,
+    "driver": "616.92",
+    "power_limit_w": 180,
+    "memory_loaded_mhz": 13801,
+    "offsets_mhz": {
+     "xbar_offset_mhz": 0,
+     "sys_offset_mhz": 0,
+     "video_offset_mhz": 0,
+     "demand_core_mv": 0,
+     "demand_xbar_mv": 0,
+     "demand_sys_mv": 0,
+     "demand_video_mv": 0
+    },
+    "restored_byte_for_byte": true,
+    "afterburner_closed": true,
+    "gemm_2475_power_w": 180.15
+   }
+  },
+  "pass2-reduce": {
+   "sweep": "20261019-091141_rep-pass2-reduce_sweep.csv",
+   "hwinfo": "../../HWiNFO-Data/day5-20261019/rep-pass2-reduce-hwinfo.csv",
+   "utc_offset_minutes": -420,
+   "wrapper": "wrapper/rep-pass2-reduce-wrapper-result.json",
+   "driver_events": {
+    "ids": [],
+    "ok": true,
+    "count": 0
+   },
+   "witness": {
+    "profile_store": "witnesses/rep-d5-pass2-store.cfg",
+    "snapshot": "curve3",
+    "profile_slot": 3,
+    "witnessed_at_unix": 1792425770.048,
+    "driver": "616.92",
+    "power_limit_w": 180,
+    "memory_loaded_mhz": 13801,
+    "offsets_mhz": {
+     "xbar_offset_mhz": 0,
+     "sys_offset_mhz": 0,
+     "video_offset_mhz": 0,
+     "demand_core_mv": 0,
+     "demand_xbar_mv": 0,
+     "demand_sys_mv": 0,
+     "demand_video_mv": 0
+    },
+    "restored_byte_for_byte": true,
+    "afterburner_closed": true,
+    "gemm_2475_power_w": 180.15
+   }
+  },
+  "pass2-copy": {
+   "sweep": "20261019-091848_rep-pass2-copy_sweep.csv",
+   "hwinfo": "../../HWiNFO-Data/day5-20261019/rep-pass2-copy-hwinfo.csv",
+   "utc_offset_minutes": -420,
+   "wrapper": "wrapper/rep-pass2-copy-wrapper-result.json",
+   "driver_events": {
+    "ids": [],
+    "ok": true,
+    "count": 0
+   },
+   "witness": {
+    "profile_store": "witnesses/rep-d5-pass2-store.cfg",
+    "snapshot": "curve3",
+    "profile_slot": 3,
+    "witnessed_at_unix": 1792425770.048,
+    "driver": "616.92",
+    "power_limit_w": 180,
+    "memory_loaded_mhz": 13801,
+    "offsets_mhz": {
+     "xbar_offset_mhz": 0,
+     "sys_offset_mhz": 0,
+     "video_offset_mhz": 0,
+     "demand_core_mv": 0,
+     "demand_xbar_mv": 0,
+     "demand_sys_mv": 0,
+     "demand_video_mv": 0
+    },
+    "restored_byte_for_byte": true,
+    "afterburner_closed": true,
+    "gemm_2475_power_w": 180.15
+   }
+  },
+  "pass2-gemm": {
+   "sweep": "20261019-092543_rep-pass2-gemm_sweep.csv",
+   "hwinfo": "../../HWiNFO-Data/day5-20261019/rep-pass2-gemm-hwinfo.csv",
+   "utc_offset_minutes": -420,
+   "wrapper": "wrapper/rep-pass2-gemm-wrapper-result.json",
+   "driver_events": {
+    "ids": [],
+    "ok": true,
+    "count": 0
+   },
+   "witness": {
+    "profile_store": "witnesses/rep-d5-pass2-store.cfg",
+    "snapshot": "curve3",
+    "profile_slot": 3,
+    "witnessed_at_unix": 1792425770.048,
+    "driver": "616.92",
+    "power_limit_w": 180,
+    "memory_loaded_mhz": 13801,
+    "offsets_mhz": {
+     "xbar_offset_mhz": 0,
+     "sys_offset_mhz": 0,
+     "video_offset_mhz": 0,
+     "demand_core_mv": 0,
+     "demand_xbar_mv": 0,
+     "demand_sys_mv": 0,
+     "demand_video_mv": 0
+    },
+    "restored_byte_for_byte": true,
+    "afterburner_closed": true,
+    "gemm_2475_power_w": 180.15
+   }
+  }
+ },
+ "references": {},
+ "notScoreable": [],
+ "sources": {
+  "Invoke-Rerun15Session.ps1": "A0753C59BEB405BE6A2E6D9DFB8B6AE191AB50468689292B65101BD7D42C4C7C",
+  "Invoke-LoggedSweep.ps1": "24F22231C7C2BF88EB4828B3A0A29C9EA541D3D561BAF2579D96591A233D6DA0",
+  "gpu_workload.py": "4C602A818033922074FB3A0EA8D8D15D2A4797019E960B4F25E64C375CC53A65",
+  "app_workloads.py": "8D5B719E6A842E3F1ABF5D56F55FBC82198D1ED3B6044350C6003CB8F2E5B132"
+ },
+ "repeatability": {
+  "day": 5,
+  "localDate": "2026-10-19",
+  "utcOffsetMinutes": -420,
+  "commit": "e903149d1696dc1e4b2822e5437a8c29bf93066a",
+  "grid": [
+   1237,
+   1275,
+   1312,
+   1350,
+   1387,
+   1425,
+   1462,
+   1500,
+   1537,
+   1575,
+   1612,
+   1650,
+   1687,
+   1725,
+   1762,
+   1800,
+   1837,
+   1875,
+   2010,
+   2317
+  ],
+  "inputSeed": 20261013,
+  "iterations": {
+   "gemm": 120,
+   "copy": 2660,
+   "reduce": 2870,
+   "resnet50": 424
+  },
+  "pass1": {
+   "order": [
+    "gemm",
+    "copy",
+    "reduce",
+    "resnet50"
+   ],
+   "descending": false
+  },
+  "pass2": {
+   "order": [
+    "resnet50",
+    "reduce",
+    "copy",
+    "gemm"
+   ],
+   "descending": true
+  }
+ },
+ "driverEventsFinal": {
+  "ids": [],
+  "ok": true,
+  "session_start_unix": 1792423410.808,
+  "count": 0,
+  "read_at_unix": 1792427651.558
+ },
+ "exitCode": 0
+}

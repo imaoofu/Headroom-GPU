@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "title": "New card: stock protocol (REGISTERED-PREDICTIONS 11)",
+  "volumeLabel": "ESD-USB",
+  "card": {
+    "generic": true,
+    "name": "Any NVIDIA GeForce RTX 40 or 50 series card, stock only",
+    "namePattern": "^NVIDIA GeForce RTX (40|50)[0-9]0( Ti)?( SUPER)?$"
+  },
+  "revert": null,
+  "runs": [
+    {
+      "id": "preflight",
+      "name": "Preflight: quiet card, HWiNFO, stock power",
+      "why": "Reject a busy card or a changed power limit before measuring.",
+      "minutes": 2,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [],
+      "group": null,
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "quiet",
+          "type": "gate-quiet",
+          "name": "Quiet pmon baseline and video engines",
+          "estimatedMinutes": 0.3,
+          "maxUtil": 5
+        },
+        {
+          "id": "sensors",
+          "type": "human",
+          "name": "Confirm HWiNFO Sensors window",
+          "estimatedMinutes": 0.5,
+          "instruction": "HWiNFO has launched from the kit (if it was not already running). Open Sensors only and close any update popup. The run continues by itself once the Sensors window is detected; Continue also works.",
+          "launchHwinfo": true
+        },
+        {
+          "id": "power",
+          "type": "gate-power",
+          "name": "Power limit is the card default (stock)",
+          "estimatedMinutes": 0.1,
+          "stockOnly": true
+        }
+      ]
+    },
+    {
+      "id": "calibrate",
+      "name": "Calibrate the suite for this card",
+      "why": "Iteration counts are a property of the card; taken once, kept on resume.",
+      "minutes": 6,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "preflight"
+      ],
+      "group": null,
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "calibrate",
+          "type": "calibrate",
+          "name": "Calibrate 11 suite workloads (gemm stays 120)",
+          "estimatedMinutes": 6,
+          "workloads": [
+            "copy",
+            "reduce",
+            "softmax",
+            "layernorm",
+            "bgemm32",
+            "bgemm64",
+            "bgemm128",
+            "bgemm256",
+            "bgemm1024",
+            "attention",
+            "conv"
+          ],
+          "targetSeconds": 9
+        }
+      ]
+    },
+    {
+      "id": "dense-asc",
+      "name": "Dense floor sweep, ascending (11)",
+      "why": "Locates the load floor end on this card; up then down, so warm-up is visible.",
+      "minutes": 18,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "calibrate"
+      ],
+      "group": "newcard",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "log-start",
+          "type": "hwinfo-start",
+          "name": "Start HWiNFO log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-{session}-newcard-dense-asc.csv"
+        },
+        {
+          "id": "sweep",
+          "type": "sweep",
+          "name": "Dense gemm floor sweep, 40-80 pct of table top, ascending",
+          "estimatedMinutes": 18,
+          "label": "newcard-dense-asc",
+          "workload": "gemm",
+          "iterations": 120,
+          "direction": "ascending",
+          "output": "kit:/results/{session}-newcard-dense-asc",
+          "settings": "STOCK as found on a shop build, nothing applied by the bench; power limit verified at the card default; no Afterburner profile applied; IR off; baseline under 5 pct; REGISTERED-PREDICTIONS 11 (new-card protocol); dense floor sweep ascending",
+          "minPctOfTop": 0.4,
+          "maxPctOfTop": 0.8,
+          "points": 25
+        },
+        {
+          "id": "log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop HWiNFO log",
+          "estimatedMinutes": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dense-desc",
+      "name": "Dense floor sweep, descending (11)",
+      "why": "Locates the load floor end on this card; up then down, so warm-up is visible.",
+      "minutes": 18,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "calibrate"
+      ],
+      "group": "newcard",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "log-start",
+          "type": "hwinfo-start",
+          "name": "Start HWiNFO log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-{session}-newcard-dense-des.csv"
+        },
+        {
+          "id": "sweep",
+          "type": "sweep",
+          "name": "Dense gemm floor sweep, 40-80 pct of table top, descending",
+          "estimatedMinutes": 18,
+          "label": "newcard-dense-des",
+          "workload": "gemm",
+          "iterations": 120,
+          "direction": "descending",
+          "output": "kit:/results/{session}-newcard-dense-des",
+          "settings": "STOCK as found on a shop build, nothing applied by the bench; power limit verified at the card default; no Afterburner profile applied; IR off; baseline under 5 pct; REGISTERED-PREDICTIONS 11 (new-card protocol); dense floor sweep descending",
+          "minPctOfTop": 0.4,
+          "maxPctOfTop": 0.8,
+          "points": 25
+        },
+        {
+          "id": "log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop HWiNFO log",
+          "estimatedMinutes": 0.2
+        }
+      ]
+    },
+    {
+      "id": "suite",
+      "name": "Twelve-workload suite (11)",
+      "why": "The stock efficiency optimum the rule predicts.",
+      "minutes": 62,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "calibrate"
+      ],
+      "group": "newcard",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "log-start",
+          "type": "hwinfo-start",
+          "name": "Start HWiNFO log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-{session}-newcard-suite.csv"
+        },
+        {
+          "id": "collect",
+          "type": "suite",
+          "name": "Collect 12-workload suite",
+          "estimatedMinutes": 62,
+          "label": "newcard-suite",
+          "settings": "STOCK as found on a shop build, nothing applied by the bench; power limit verified at the card default; no Afterburner profile applied; IR off; baseline under 5 pct; REGISTERED-PREDICTIONS 11 (new-card protocol)",
+          "workloads": [
+            "copy",
+            "reduce",
+            "softmax",
+            "layernorm",
+            "bgemm32",
+            "bgemm64",
+            "bgemm128",
+            "bgemm256",
+            "bgemm1024",
+            "attention",
+            "conv",
+            "gemm"
+          ],
+          "iterations": "calibrated"
+        },
+        {
+          "id": "log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop HWiNFO log",
+          "estimatedMinutes": 0.2
+        }
+      ]
+    },
+    {
+      "id": "cleanup",
+      "name": "Verify stock power and bring the kit back",
+      "why": "Nothing was applied; confirm the power limit is still the default.",
+      "minutes": 1,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "preflight"
+      ],
+      "group": null,
+      "finalRun": true,
+      "steps": [
+        {
+          "id": "power",
+          "type": "gate-power",
+          "name": "Power limit is still the card default",
+          "estimatedMinutes": 0.1,
+          "stockOnly": true
+        }
+      ]
+    }
+  ]
+}

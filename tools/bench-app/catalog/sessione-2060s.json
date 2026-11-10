@@ -1,0 +1,564 @@
+{
+  "schemaVersion": 1,
+  "title": "RTX 2060 Super Session E",
+  "volumeLabel": "ESD-USB",
+  "retired": true,
+  "card": {
+    "name": "NVIDIA GeForce RTX 2060 SUPER",
+    "minClockMhz": 405,
+    "maxClockMhz": 2115,
+    "suiteTopClockMhz": 2115,
+    "legacyDerivedGrids": "Session E, collected 2026-09-27, before the explicit-target rule of 2026-09-30. The offset moved the table top 2115 -> 2100, shifted the derived grid and made 4c-offset NOT SCOREABLE: the second failure that rule exists for."
+  },
+  "revert": {
+    "slot": 1,
+    "witness": {
+      "workload": "gemm",
+      "iterations": 400,
+      "coreMin": 1450,
+      "coreMax": 2115,
+      "memoryMin": 6700,
+      "memoryMax": 7100
+    }
+  },
+  "runs": [
+    {
+      "id": "preflight",
+      "name": "Preflight: quiet card, HWiNFO, power, alive",
+      "why": "Reject a busy card, a changed power limit or a dead workload before measuring.",
+      "minutes": 3,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [],
+      "group": null,
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "quiet",
+          "type": "gate-quiet",
+          "name": "Quiet pmon baseline and video engines",
+          "estimatedMinutes": 0.3,
+          "maxUtil": 5
+        },
+        {
+          "id": "sensors",
+          "type": "human",
+          "name": "Confirm HWiNFO Sensors window",
+          "estimatedMinutes": 0.5,
+          "instruction": "HWiNFO has launched from the kit (if it was not already running). Open Sensors only and close any update popup. The run continues by itself once the Sensors window is detected; Continue also works.",
+          "launchHwinfo": true
+        },
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P1 (stock)",
+          "estimatedMinutes": 0.2,
+          "slot": 1
+        },
+        {
+          "id": "power",
+          "type": "gate-power",
+          "name": "Power 175 / 175 / 185 W",
+          "estimatedMinutes": 0.1,
+          "limit": 175,
+          "default": 175,
+          "max": 185
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Unlocked gemm: card alive, memory stock",
+          "estimatedMinutes": 1.0,
+          "workload": "gemm",
+          "iterations": 400,
+          "coreMin": 1450,
+          "coreMax": 2115,
+          "memoryMin": 6700,
+          "memoryMax": 7100
+        }
+      ]
+    },
+    {
+      "id": "e1-desc",
+      "name": "E1: descending fine floor 1140 to 900 MHz (4d)",
+      "why": "Is the non-monotonic Turing floor a property of the curve or of a cold card?",
+      "minutes": 16,
+      "priority": 0,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "preflight"
+      ],
+      "group": null,
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P1",
+          "estimatedMinutes": 0.2,
+          "slot": 1
+        },
+        {
+          "id": "witness-log-start",
+          "type": "hwinfo-start",
+          "name": "Start short witness voltage log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx2060s-sessione-e1-desc-witness.csv"
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Stock at locked 1065 MHz reads the stock floor voltage",
+          "estimatedMinutes": 1.0,
+          "workload": "gemm",
+          "iterations": 200,
+          "coreMin": 1050,
+          "coreMax": 1080,
+          "memoryMin": 6700,
+          "memoryMax": 7100,
+          "lockMhz": 1065,
+          "voltageMin": 0.63,
+          "voltageMax": 0.657
+        },
+        {
+          "id": "witness-log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop witness voltage log",
+          "estimatedMinutes": 0.2
+        },
+        {
+          "id": "log-start",
+          "type": "hwinfo-start",
+          "name": "Start HWiNFO log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx2060s-sessione-e1-desc.csv"
+        },
+        {
+          "id": "sweep",
+          "type": "sweep",
+          "name": "Descending 900-1140 MHz gemm sweep, 13 points",
+          "estimatedMinutes": 14,
+          "label": "rtx2060s-sessione-e1-desc",
+          "workload": "gemm",
+          "iterations": 120,
+          "minMhz": 900,
+          "maxMhz": 1140,
+          "points": 13,
+          "direction": "descending",
+          "output": "kit:/results/e1-desc",
+          "settings": "STOCK P1, verified at locked 1065 MHz by voltage; PL default 175 W, memory +0, IR off, baseline under 5 pct - fine floor probe 900-1140 DESCENDING order, same grid as 20260915 rtx2060s-finefloor-gemm, thermal control for REGISTERED-PREDICTIONS 4d; gemm 120 iterations, the default that run used"
+        },
+        {
+          "id": "log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop HWiNFO log",
+          "estimatedMinutes": 0.2
+        }
+      ]
+    },
+    {
+      "id": "stock-1",
+      "name": "E2: stock suite (opening bracket)",
+      "why": "Baseline for 4c, same work as 09-12.",
+      "minutes": 62,
+      "priority": 1,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "preflight"
+      ],
+      "group": "sessione-e2",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P1",
+          "estimatedMinutes": 0.2,
+          "slot": 1
+        },
+        {
+          "id": "witness-log-start",
+          "type": "hwinfo-start",
+          "name": "Start short witness voltage log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx2060s-sessione-stock-1-witness.csv"
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Stock at locked 1065 MHz reads the stock floor voltage",
+          "estimatedMinutes": 1.0,
+          "workload": "gemm",
+          "iterations": 200,
+          "coreMin": 1050,
+          "coreMax": 1080,
+          "memoryMin": 6700,
+          "memoryMax": 7100,
+          "lockMhz": 1065,
+          "voltageMin": 0.63,
+          "voltageMax": 0.657
+        },
+        {
+          "id": "witness-log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop witness voltage log",
+          "estimatedMinutes": 0.2
+        },
+        {
+          "id": "log-start",
+          "type": "hwinfo-start",
+          "name": "Start HWiNFO log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx2060s-sessione-stock-1.csv"
+        },
+        {
+          "id": "collect",
+          "type": "suite",
+          "name": "Collect 12-workload suite",
+          "estimatedMinutes": 58,
+          "label": "rtx2060s-sessione-stock-1",
+          "settings": "STOCK P1, verified at locked 1065 MHz by voltage; PL default 175 W, memory +0, IR off, baseline under 5 pct; iterations matched to 20260912-124138_rtx2060super-suite; REGISTERED-PREDICTIONS 4c, opening stock bracket",
+          "workloads": [
+            "copy",
+            "reduce",
+            "softmax",
+            "layernorm",
+            "bgemm32",
+            "bgemm64",
+            "bgemm128",
+            "bgemm256",
+            "bgemm1024",
+            "attention",
+            "conv",
+            "gemm"
+          ],
+          "iterations": [
+            2936,
+            3180,
+            2377,
+            1628,
+            1163,
+            2986,
+            1935,
+            1076,
+            297,
+            88,
+            223,
+            120
+          ],
+          "expectedMemoryClockMhz": 7000
+        },
+        {
+          "id": "log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop HWiNFO log",
+          "estimatedMinutes": 0.2
+        }
+      ]
+    },
+    {
+      "id": "offset-2",
+      "name": "E2: -165 MHz offset suite (4c-offset)",
+      "why": "The whole curve shifted -165 MHz: floor end 1005 to 840 MHz.",
+      "minutes": 62,
+      "priority": 1,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "stock-1"
+      ],
+      "group": "sessione-e2",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P2",
+          "estimatedMinutes": 0.2,
+          "slot": 2
+        },
+        {
+          "id": "witness-log-start",
+          "type": "hwinfo-start",
+          "name": "Start short witness voltage log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx2060s-sessione-offset-2-witness.csv"
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Offset at locked 1065 MHz reads stock 1230 MHz voltage",
+          "estimatedMinutes": 1.0,
+          "workload": "gemm",
+          "iterations": 200,
+          "coreMin": 1050,
+          "coreMax": 1080,
+          "memoryMin": 6700,
+          "memoryMax": 7100,
+          "lockMhz": 1065,
+          "voltageMin": 0.672,
+          "voltageMax": 0.7
+        },
+        {
+          "id": "witness-above",
+          "type": "witness",
+          "name": "Offset at locked 1275 MHz reads stock 1440 MHz voltage",
+          "estimatedMinutes": 1.0,
+          "workload": "gemm",
+          "iterations": 200,
+          "coreMin": 1260,
+          "coreMax": 1290,
+          "memoryMin": 6700,
+          "memoryMax": 7100,
+          "lockMhz": 1275,
+          "voltageMin": 0.731,
+          "voltageMax": 0.757
+        },
+        {
+          "id": "witness-log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop witness voltage log",
+          "estimatedMinutes": 0.2
+        },
+        {
+          "id": "log-start",
+          "type": "hwinfo-start",
+          "name": "Start HWiNFO log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx2060s-sessione-offset-2.csv"
+        },
+        {
+          "id": "collect",
+          "type": "suite",
+          "name": "Collect 12-workload suite",
+          "estimatedMinutes": 58,
+          "label": "rtx2060s-sessione-offset-2",
+          "settings": "P2 = STOCK CURVE WITH A -165 MHz CORE OFFSET (Afterburner core slider, curve untouched); verified at locked 1065 MHz (0.672-0.700 V) and locked 1275 MHz (0.731-0.757 V); PL default 175 W, memory +0, IR off, baseline under 5 pct; REGISTERED-PREDICTIONS 4c-offset, Amendment 2 2026-09-27 (the 4c curve edit could not be built)",
+          "workloads": [
+            "copy",
+            "reduce",
+            "softmax",
+            "layernorm",
+            "bgemm32",
+            "bgemm64",
+            "bgemm128",
+            "bgemm256",
+            "bgemm1024",
+            "attention",
+            "conv",
+            "gemm"
+          ],
+          "iterations": [
+            2936,
+            3180,
+            2377,
+            1628,
+            1163,
+            2986,
+            1935,
+            1076,
+            297,
+            88,
+            223,
+            120
+          ],
+          "expectedMemoryClockMhz": 7000
+        },
+        {
+          "id": "log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop HWiNFO log",
+          "estimatedMinutes": 0.2
+        }
+      ]
+    },
+    {
+      "id": "stock-3",
+      "name": "E2: stock suite (closing bracket)",
+      "why": "If stock does not return, 4c is not interpretable.",
+      "minutes": 62,
+      "priority": 1,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "offset-2"
+      ],
+      "group": "sessione-e2",
+      "finalRun": false,
+      "steps": [
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P1",
+          "estimatedMinutes": 0.2,
+          "slot": 1
+        },
+        {
+          "id": "witness-log-start",
+          "type": "hwinfo-start",
+          "name": "Start short witness voltage log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx2060s-sessione-stock-3-witness.csv"
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Stock at locked 1065 MHz reads the stock floor voltage",
+          "estimatedMinutes": 1.0,
+          "workload": "gemm",
+          "iterations": 200,
+          "coreMin": 1050,
+          "coreMax": 1080,
+          "memoryMin": 6700,
+          "memoryMax": 7100,
+          "lockMhz": 1065,
+          "voltageMin": 0.63,
+          "voltageMax": 0.657
+        },
+        {
+          "id": "witness-log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop witness voltage log",
+          "estimatedMinutes": 0.2
+        },
+        {
+          "id": "log-start",
+          "type": "hwinfo-start",
+          "name": "Start HWiNFO log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx2060s-sessione-stock-3.csv"
+        },
+        {
+          "id": "collect",
+          "type": "suite",
+          "name": "Collect 12-workload suite",
+          "estimatedMinutes": 58,
+          "label": "rtx2060s-sessione-stock-3",
+          "settings": "STOCK P1 reverted after the offset, verified at locked 1065 MHz by voltage; PL default 175 W, memory +0, IR off, baseline under 5 pct; REGISTERED-PREDICTIONS 4c, closing stock bracket",
+          "workloads": [
+            "copy",
+            "reduce",
+            "softmax",
+            "layernorm",
+            "bgemm32",
+            "bgemm64",
+            "bgemm128",
+            "bgemm256",
+            "bgemm1024",
+            "attention",
+            "conv",
+            "gemm"
+          ],
+          "iterations": [
+            2936,
+            3180,
+            2377,
+            1628,
+            1163,
+            2986,
+            1935,
+            1076,
+            297,
+            88,
+            223,
+            120
+          ],
+          "expectedMemoryClockMhz": 7000
+        },
+        {
+          "id": "log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop HWiNFO log",
+          "estimatedMinutes": 0.2
+        },
+        {
+          "id": "stock-return",
+          "type": "gate-drift",
+          "name": "Check stock return across 12 workloads",
+          "estimatedMinutes": 0.2,
+          "firstRun": "stock-1",
+          "lastRun": "stock-3",
+          "workloads": [
+            "copy",
+            "reduce",
+            "softmax",
+            "layernorm",
+            "bgemm32",
+            "bgemm64",
+            "bgemm128",
+            "bgemm256",
+            "bgemm1024",
+            "attention",
+            "conv",
+            "gemm"
+          ],
+          "maxMedianAbsPct": 1.5,
+          "blocking": false
+        }
+      ]
+    },
+    {
+      "id": "cleanup",
+      "name": "Verify stock and bring the kit back",
+      "why": "Verify stock before the card ships; retain the USB.",
+      "minutes": 3,
+      "priority": 2,
+      "preselected": true,
+      "locked": true,
+      "requires": [
+        "preflight"
+      ],
+      "group": null,
+      "finalRun": true,
+      "steps": [
+        {
+          "id": "profile",
+          "type": "apply-profile",
+          "name": "Apply profile P1",
+          "estimatedMinutes": 0.2,
+          "slot": 1
+        },
+        {
+          "id": "witness-log-start",
+          "type": "hwinfo-start",
+          "name": "Start short witness voltage log",
+          "estimatedMinutes": 0.3,
+          "path": "kit:/results/hwinfo-rtx2060s-sessione-cleanup-witness.csv"
+        },
+        {
+          "id": "witness",
+          "type": "witness",
+          "name": "Stock at locked 1065 MHz reads the stock floor voltage",
+          "estimatedMinutes": 1.0,
+          "workload": "gemm",
+          "iterations": 200,
+          "coreMin": 1050,
+          "coreMax": 1080,
+          "memoryMin": 6700,
+          "memoryMax": 7100,
+          "lockMhz": 1065,
+          "voltageMin": 0.63,
+          "voltageMax": 0.657
+        },
+        {
+          "id": "witness-log-stop",
+          "type": "hwinfo-stop",
+          "name": "Stop witness voltage log",
+          "estimatedMinutes": 0.2
+        },
+        {
+          "id": "power",
+          "type": "gate-power",
+          "name": "Verify stock power limits",
+          "estimatedMinutes": 0.1,
+          "limit": 175,
+          "default": 175,
+          "max": 185
+        }
+      ]
+    }
+  ]
+}

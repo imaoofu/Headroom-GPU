@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "directory": "data/repeatability/day3-20261017",
+  "kind": "repeatability-day",
+  "label": "Repeated days on N=1 chip; five filed days COMPLETE. See scorer for workload outcomes.",
+  "readme": "data/repeatability/day3-20261017/README.md",
+  "readme_excerpt": "`docs/REGISTERED-PREDICTIONS.md` \u00a722, day index 3. Run by\n`tools/rerun15/Invoke-Rerun15Session.ps1 -Parts rep -Session 3 -ManageChatGpt` from `1c1e388` (the\nattempt-line commit; runner byte-identical to days 1\u20132, launch hash `A0753C59\u2026`), launched 14:45:29 local\n(UTC\u22127), minimized and unattended, exit 0 at 15:56:16. Attempt 4 in `docs/repeatability/ATTEMPTS.md`.\n**N=1 chip.**\n\nLaunched the afternoon of the same date as the new-card practice run (12:25\u201314:00, a different protocol,\nnot data). Phone Link (PhoneExperienceHost, CrossDeviceService) was stopped just before launch as a\nprecaution: it is a candidate for waking the CPU's integrated GPU (practice attempt 1). Each pass still began\nwith its own 90 s idle and stock witness.",
+  "counts": {
+    "files": 44,
+    "sweeps": 8,
+    "target_rows": 160,
+    "voltage_extracts": 8,
+    "windows": 0,
+    "reader_csvs": 0,
+    "probe_jsons": 0
+  },
+  "files": [
+    {
+      "path": "data/repeatability/day3-20261017/20261017-145019_rep-pass1-reduce_sweep.csv",
+      "bytes": 8969,
+      "sha256": "390e4105b30837895bdb04b7a1b5936c3e6cfd6b00d7218b2ef48ab5ddbfa402"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-145019_rep-pass1-reduce_sweep.json",
+      "bytes": 2197,
+      "sha256": "1df0af70452856b526694a1e42bd4f831e3015d75e8af2be82d06dc97b217118"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-145019_rep-pass1-reduce_sweep_voltage.csv",
+      "bytes": 2240,
+      "sha256": "df6e56237647dfa7dcec044947011e977222e573419f0f8102707e24d3022dd8"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-145733_rep-pass1-resnet50_sweep.csv",
+      "bytes": 9726,
+      "sha256": "78c01494600c71f42285c3345ffd1fa12e093e2b47afc1825597b7a150c51c26"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-145733_rep-pass1-resnet50_sweep.json",
+      "bytes": 2182,
+      "sha256": "063acf3611d1881c257544b76df31fc15aa1db2de667b67b72d670684e6c8357"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-145733_rep-pass1-resnet50_sweep_voltage.csv",
+      "bytes": 2305,
+      "sha256": "7b8be5225095a0014543375c4729204a8dd81333f1de6573dbb1658f806bd060"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-150603_rep-pass1-gemm_sweep.csv",
+      "bytes": 9727,
+      "sha256": "0665e8f05f34f7f8a24673c716e25a53c66c15c3e3b9c6954835ef22cfeed6c5"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-150603_rep-pass1-gemm_sweep.json",
+      "bytes": 2192,
+      "sha256": "6c50324d5d6fd41a09ca470910a5f2b44cffc29e6d1394600a6da8c1aed6b461"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-150603_rep-pass1-gemm_sweep_voltage.csv",
+      "bytes": 2252,
+      "sha256": "e1eb6d578f39e50ea155d39709c622e0cf21d746ed383353c88b01581e79fd97"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-151416_rep-pass1-copy_sweep.csv",
+      "bytes": 8685,
+      "sha256": "2452ba434209a00949bf683184100cd7a2bb664910faabd5c71da8f102377a04"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-151416_rep-pass1-copy_sweep.json",
+      "bytes": 2193,
+      "sha256": "ef827d83ca326de664fe6e0e51bb4b5b7cc49ca79062b7ce0955468381571289"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-151416_rep-pass1-copy_sweep_voltage.csv",
+      "bytes": 2243,
+      "sha256": "d3b36e36f5b5b9f6f3a260127a1d02fdb9932fbae76201c5bf5651fa69d1ed4d"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-152510_rep-pass2-copy_sweep.csv",
+      "bytes": 8672,
+      "sha256": "7652ce7f5c40317f4c9511c98de8b7ef61fccdd35a46702db7c812a645707729"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-152510_rep-pass2-copy_sweep.json",
+      "bytes": 2195,
+      "sha256": "6df2a490893210425a29607bf78bfa635049f060becbbff2e31d17592de30f8e"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-152510_rep-pass2-copy_sweep_voltage.csv",
+      "bytes": 2241,
+      "sha256": "cf4613d1a15abefad9c5096a850a21cd46cd7b8bf3f2e50e318efffdc3f3c476"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-153205_rep-pass2-gemm_sweep.csv",
+      "bytes": 9688,
+      "sha256": "704960a07fa36ca3598e94335c65e352df94c2409f17961ab0567d0ec3b40676"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-153205_rep-pass2-gemm_sweep.json",
+      "bytes": 2194,
+      "sha256": "6cff840613a8af41b07ee04883f33f11d0e44345ea5dfb84c25d0db5c725de31"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-153205_rep-pass2-gemm_sweep_voltage.csv",
+      "bytes": 2234,
+      "sha256": "fe9d3f884eb1b57632565879c5beb38adb2bcdd8b142520a039bcaeaa03ca25c"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-154019_rep-pass2-resnet50_sweep.csv",
+      "bytes": 9707,
+      "sha256": "aa8684755b1f39f4c76f47ff85f37d66f5724761ac7a1c1861fa6be293555268"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-154019_rep-pass2-resnet50_sweep.json",
+      "bytes": 2182,
+      "sha256": "76c4e79e8c383e6c43b788e62a11f689adc50074357232e4a16408324da3ee9a"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-154019_rep-pass2-resnet50_sweep_voltage.csv",
+      "bytes": 2303,
+      "sha256": "88e2868f98efcbba6e8c2d7d43e893c84109876ed1659527c5f4cfd328daedf9"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-154847_rep-pass2-reduce_sweep.csv",
+      "bytes": 8954,
+      "sha256": "b6a1382fa6b28bda4e004a6c84f5c98aa554b1bc6af76ceeaf279422d181c07c"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-154847_rep-pass2-reduce_sweep.json",
+      "bytes": 2201,
+      "sha256": "1511e2daf559e9e2fb10a4a59e539c41e8ef8e11ea2b22024d26e1d1fe917e26"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/20261017-154847_rep-pass2-reduce_sweep_voltage.csv",
+      "bytes": 2240,
+      "sha256": "1209a0a62d5dfd7ea4d1d802347dfebbb1d68375baed951921bb7884dede0a5a"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/README.md",
+      "bytes": 3568,
+      "sha256": "4f7a8965b5e573aa40eb6586dd363b74b10da85402475702a0bafc7b2b251497"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/rerun15-inputs.json",
+      "bytes": 8811,
+      "sha256": "aa544ebfbe9449221f0735f0ce38ec8cb0ac78f1f3ca300944d2c71af6d689ec"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/runner-Invoke-Rerun15Session.ps1.txt",
+      "bytes": 55295,
+      "sha256": "a0753c59beb405be6a2e6d9dfb8b6ae191ab50468689292b65101bd7d42c4c7c"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/runner-cleanup.json",
+      "bytes": 175,
+      "sha256": "63e8e94e72a8c2350b81cdf8246998db6ab276bf6bd64d4d7d158011660814b0"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/witnesses/gemm-witness-144728.json",
+      "bytes": 893,
+      "sha256": "8a603cd7f666cf336c243f5c47dd05a61f1a8c4c95ee9643d84be6dc8284dfe0"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/witnesses/gemm-witness-152227.json",
+      "bytes": 892,
+      "sha256": "95ca8cab0f5cafeec982c9f1b0149b77e015541af052e072e0a785146ffaaa18"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/witnesses/rep-d3-pass1-mvolt-status.json",
+      "bytes": 2287,
+      "sha256": "cee54d3f89b4971235e8735c6ea022b15d24ae14c5af8d28f2ea02de64a1f162"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/witnesses/rep-d3-pass1-store.cfg",
+      "bytes": 32891,
+      "sha256": "8ec197f30e21d1169eb2c33d02a2eb0b1b4c5752efb7cb856e56dce0031d83b7"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/witnesses/rep-d3-pass1-witness.json",
+      "bytes": 787,
+      "sha256": "2d2cf75ecf48d8f4cefbcbfba8047d8db692b041988cc7146ed72da364e7f606"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/witnesses/rep-d3-pass2-mvolt-status.json",
+      "bytes": 2287,
+      "sha256": "a1470776eb02fa98edc3a2358e55d25968b2c77eb5699cc84ee612dfaec1be2f"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/witnesses/rep-d3-pass2-store.cfg",
+      "bytes": 32891,
+      "sha256": "8ec197f30e21d1169eb2c33d02a2eb0b1b4c5752efb7cb856e56dce0031d83b7"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/witnesses/rep-d3-pass2-witness.json",
+      "bytes": 787,
+      "sha256": "7dfb00c45a0e76b707edbd1e7a9c2dfdd80bc9d09f46583e1d8cb0768f35f43d"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/wrapper/rep-pass1-copy-wrapper-result.json",
+      "bytes": 1283,
+      "sha256": "a93283b339a3a9e93ebbe5d7ebd446f34d9a94d276503ecf9d84141a62874d7a"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/wrapper/rep-pass1-gemm-wrapper-result.json",
+      "bytes": 1283,
+      "sha256": "07f79e088bedbd5e6c62f85a8ac7cb6f5038884bf566f6ae821e3ebac3a53028"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/wrapper/rep-pass1-reduce-wrapper-result.json",
+      "bytes": 1291,
+      "sha256": "ee1c77c101f09ecf63ce32814fb64d2c0c72f5531fcc7194062bd8fec122acf2"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/wrapper/rep-pass1-resnet50-wrapper-result.json",
+      "bytes": 1299,
+      "sha256": "1d91528989fce74fd9503fee3a29074587a1ab364fb45abb5d77a9bb7cacc93c"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/wrapper/rep-pass2-copy-wrapper-result.json",
+      "bytes": 1284,
+      "sha256": "9c9e72040e58dd6a111cfa2db06c7f4d29ca6e3f37404c588b79349f4f37236e"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/wrapper/rep-pass2-gemm-wrapper-result.json",
+      "bytes": 1282,
+      "sha256": "bf426f198960bc6af919285f8caddd2a99f5e7d834a66745f46abe7927cd8530"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/wrapper/rep-pass2-reduce-wrapper-result.json",
+      "bytes": 1292,
+      "sha256": "976232bad64e26807ecc6485b7aa7ebbd78b25c71e1dc5899a17000ad13a2de0"
+    },
+    {
+      "path": "data/repeatability/day3-20261017/wrapper/rep-pass2-resnet50-wrapper-result.json",
+      "bytes": 1300,
+      "sha256": "27faac318154d87cfffb2c656f8e8db31f68878d2f063b17781f8036069a28b0"
+    }
+  ]
+}
